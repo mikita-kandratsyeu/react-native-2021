@@ -28,8 +28,12 @@ export const Wrapper: React.FC = () => {
       <Text style={styles.welcome}>Welcome to React Native</Text>
       <Text style={styles.counter}>{value}</Text>
       <View style={styles.buttons}>
-        <Button title="Plus (+)" onPress={incrementHandler} />
-        <Button title="Minus (-)" onPress={decrementHandler} />
+        <View style={styles.button}>
+          <Button title="Plus (+)" color="#ff5252" onPress={incrementHandler} />
+        </View>
+        <View>
+          <Button title="Minus (-)" onPress={decrementHandler} />
+        </View>
       </View>
     </View>
   );
@@ -55,6 +59,10 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 15,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  button: {
+    paddingLeft: 15,
+    paddingRight: 15,
   },
 });
