@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Text, TextInput, TouchableHighlight, Alert } from 'react-native';
 
+import { useDispatch } from 'react-redux';
 import { defaultStyles } from '../../../constans';
 import styles from './LoginStyles';
-import { authentication } from '../../../actions';
+import { authentication, setUserData } from '../../../actions';
 
 export const Login: React.FC = () => {
+  const dispatch = useDispatch();
+
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -17,9 +20,12 @@ export const Login: React.FC = () => {
     setPassword(value);
   };
 
-  const submitHandler = () => {
+  const submitHandler = (): void => {
     authentication(login, password).then(res => {
       if (res) {
+        // TODO: Need testing
+        dispatch(setUserData(login, res.token));
+
         Alert.alert('Success', `Your token: ${res.token}`);
       } else {
         Alert.alert('Error', 'Something went wrong! Try again!');
