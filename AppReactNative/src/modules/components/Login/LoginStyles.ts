@@ -43,16 +43,8 @@ const styles = StyleSheet.create({
 
   loginButton: {
     ...margins,
-    padding: defaultStyles.padding.medium,
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
-  },
-
-  loginText: {
-    textAlign: 'center',
-    color: defaultStyles.colors.white,
-    textTransform: 'uppercase',
-    fontSize: defaultStyles.fontSize.medium,
   },
 
   link: {
@@ -60,5 +52,7 @@ const styles = StyleSheet.create({
     fontSize: defaultStyles.fontSize.medium,
   },
 });
+
+export const backgroundGradientColors = ['#c4ddea', '#bdbad5', '#ebcdd6', '#f1dabe'];
 
 export default styles;

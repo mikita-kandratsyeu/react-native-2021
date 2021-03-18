@@ -11,7 +11,7 @@ export const setUserDataReducer = handleActions(
   {
     [`${setUserDataAction}`]: (state, { payload }) => ({
       ...state,
-      payload,
+      ...payload,
     }),
   },
   initialState,

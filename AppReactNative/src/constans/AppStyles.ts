@@ -26,6 +26,6 @@ export const defaultStyles = {
     transparent: 'transparent',
     link: '#436BFF',
     button: '#C6FF00',
-    grey: '#CFD8DC',
+    grey: '#8EACBB',
   },
 };
