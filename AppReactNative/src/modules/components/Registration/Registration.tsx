@@ -11,7 +11,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { backgroundGradientColors, defaultStyles } from '../../../constans';
-
 import styles from './RegistrationStyles';
 
 export const Registration: React.FC = () => {

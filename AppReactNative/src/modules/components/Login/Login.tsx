@@ -11,8 +11,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 import { defaultStyles, backgroundGradientColors } from '../../../constans';
-import styles from './LoginStyles';
 import { loginIntoSystem, setUserData } from '../../../actions';
+import styles from './LoginStyles';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();

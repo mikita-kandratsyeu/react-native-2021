@@ -3,7 +3,6 @@ import { Button, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getValueSelector } from '../../../selectors';
 import { changeValue } from '../../../actions';
-
 import styles from './CounterStyles';
 
 export const Counter: React.FC = () => {
