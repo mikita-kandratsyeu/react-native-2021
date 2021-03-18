@@ -8,12 +8,19 @@ const styles = StyleSheet.create({
 
   title: {
     ...margins,
-    marginTop: 150,
+    marginTop: defaultStyles.margin.medium,
     backgroundColor: defaultStyles.colors.transparent,
     fontSize: defaultStyles.fontSize.large,
     textAlign: 'center',
     color: defaultStyles.colors.blue,
     fontWeight: '700',
+  },
+
+  iconArrowBack: {
+    width: defaultStyles.fontSize.large,
+    height: defaultStyles.fontSize.large,
+    marginLeft: defaultStyles.margin.large,
+    marginTop: defaultStyles.margin.large,
   },
 
   input: {
@@ -26,19 +33,13 @@ const styles = StyleSheet.create({
     fontSize: defaultStyles.fontSize.medium,
   },
 
-  restoreButton: {
-    ...margins,
-    marginTop: defaultStyles.margin.medium,
-    alignSelf: 'center',
-  },
-
   registrationButton: {
-    ...margins,
     alignSelf: 'center',
   },
 
   loginButton: {
     ...margins,
+    marginTop: defaultStyles.margin.small,
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
   },

@@ -29,3 +29,14 @@ export const defaultStyles = {
     grey: '#8EACBB',
   },
 };
+
+export const backgroundGradientColors = [
+  '#c4ddea',
+  '#bdbad5',
+  '#ebcdd6',
+  '#f1dabe',
+];
+
+export const margins = {
+  margin: defaultStyles.margin.large,
+};

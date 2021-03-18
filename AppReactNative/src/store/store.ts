@@ -5,5 +5,8 @@ import createRootReducer from './root-reducer';
 import ReactotronConfig from '../../config/ReactotronConfig';
 
 export const configStore = (): Store<AppState> =>
-  // @ts-ignore
-  createStore(createRootReducer(), compose(applyMiddleware(thunk), ReactotronConfig.createEnhancer()));
+  createStore(
+    createRootReducer(),
+    // @ts-ignore
+    compose(applyMiddleware(thunk), ReactotronConfig.createEnhancer()),
+  );

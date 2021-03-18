@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Text, TextInput, TouchableHighlight, Alert, Button, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  Alert,
+  Button,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
-import { defaultStyles } from '../../../constans';
-import styles, { backgroundGradientColors } from './LoginStyles';
+import { defaultStyles, backgroundGradientColors } from '../../../constans';
+import styles from './LoginStyles';
 import { loginIntoSystem, setUserData } from '../../../actions';
 
 export const Login: React.FC = () => {
@@ -45,7 +53,7 @@ export const Login: React.FC = () => {
           value={login}
           onChangeText={(text: string) => changeLoginHandler(text)}
           style={styles.input}
-          placeholder="Login"
+          placeholder="Email Address"
           placeholderTextColor={defaultStyles.colors.grey}
           autoCompleteType="email"
           blurOnSubmit
@@ -59,7 +67,6 @@ export const Login: React.FC = () => {
           placeholder="Password"
           placeholderTextColor={defaultStyles.colors.grey}
           autoCompleteType="password"
-          blurOnSubmit
           secureTextEntry
           textContentType="password"
         />
@@ -67,7 +74,11 @@ export const Login: React.FC = () => {
           <Text style={styles.link}>Forgot password?</Text>
         </TouchableHighlight>
         <View style={styles.loginButton}>
-          <Button title="Login" onPress={submitHandler} disabled={isButtonDisabled} />
+          <Button
+            title="Login"
+            onPress={submitHandler}
+            disabled={isButtonDisabled}
+          />
         </View>
         <TouchableHighlight style={styles.registrationButton}>
           <Text style={styles.link}>New here? Registration</Text>

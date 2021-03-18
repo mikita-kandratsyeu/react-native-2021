@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
   },
   root: true,
-  extends: ['@react-native-community', 'plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    '@react-native-community',
+    'plugin:react/recommended',
+    'airbnb',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-native', '@typescript-eslint', 'prettier'],
   rules: {
