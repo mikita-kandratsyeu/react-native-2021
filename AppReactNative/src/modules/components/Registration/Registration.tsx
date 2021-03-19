@@ -39,7 +39,7 @@ export const Registration: React.FC = () => {
     setConfirmPassword(value);
   };
 
-  // TODO: Functionality will implement in the future tasks
+  // TODO: Functionality will be implement in the future tasks
   const submitHandler = (): void => {};
 
   return (

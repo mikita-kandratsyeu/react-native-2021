@@ -51,4 +51,68 @@ const styles = StyleSheet.create({
   },
 });
 
+export const extendStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: defaultStyles.margin.medium,
+    padding: defaultStyles.margin.medium,
+  },
+
+  imageWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    overflow: 'hidden',
+    marginTop: defaultStyles.margin.small,
+  },
+
+  image: {
+    height: 250,
+    width: 180,
+  },
+
+  title: {
+    fontSize: defaultStyles.fontSize.large,
+    fontWeight: 'bold',
+  },
+
+  priceWrapper: {
+    flexDirection: 'row',
+  },
+
+  price: {
+    fontWeight: 'bold',
+    fontSize: defaultStyles.fontSize.medium,
+  },
+
+  oldPrice: {
+    marginLeft: defaultStyles.margin.medium,
+    fontWeight: 'bold',
+    textDecorationLine: 'line-through',
+    fontSize: defaultStyles.fontSize.medium,
+  },
+
+  discount: {
+    marginLeft: defaultStyles.margin.medium,
+    color: defaultStyles.colors.blue,
+    fontWeight: 'bold',
+    fontSize: defaultStyles.fontSize.medium,
+  },
+
+  inStockWrapper: {
+    marginTop: defaultStyles.margin.medium,
+    backgroundColor: defaultStyles.colors.blue,
+    padding: defaultStyles.padding.large,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 'auto',
+  },
+
+  inStock: {
+    color: defaultStyles.colors.white,
+    fontSize: defaultStyles.fontSize.medium,
+  },
+});
+
 export default styles;

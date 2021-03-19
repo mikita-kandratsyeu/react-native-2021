@@ -1,6 +1,5 @@
 import { IProduct } from '../../../interfaces';
 
-export interface IProductProps {
+export interface IProductDetailsProps {
   product: IProduct;
-  isExtend?: boolean;
 }
