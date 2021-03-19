@@ -3,6 +3,7 @@ import { Button, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getValueSelector } from '../../../selectors';
 import { changeValue } from '../../../actions';
+import { defaultStyles } from '../../../constans';
 import styles from './CounterStyles';
 
 export const Counter: React.FC = () => {
@@ -30,7 +31,11 @@ export const Counter: React.FC = () => {
       <Text style={styles.counter}>{value}</Text>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button title="Plus (+)" color="#ff5252" onPress={incrementHandler} />
+          <Button
+            title="Plus (+)"
+            color={defaultStyles.colors.red}
+            onPress={incrementHandler}
+          />
         </View>
         <View>
           <Button title="Minus (-)" onPress={decrementHandler} />

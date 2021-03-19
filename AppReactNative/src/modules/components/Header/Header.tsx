@@ -7,10 +7,9 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import { IHeaderProps } from './interfaces';
-import { Search } from '../Search';
+import { Search, IconSearch } from '../UI';
+import { defaultStyles } from '../../../constans';
 import styles from './HeaderStyles';
-import { defaultStyles } from '../../../../constans';
-import { IconSearch } from '../IconSearch';
 
 export const Header: React.FC<IHeaderProps> = ({
   title = '',

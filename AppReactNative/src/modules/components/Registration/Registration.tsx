@@ -10,7 +10,11 @@ import {
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { backgroundGradientColors, defaultStyles } from '../../../constans';
+import {
+  backgroundGradientColors,
+  defaultStyles,
+  nameOfStore,
+} from '../../../constans';
 import styles from './RegistrationStyles';
 
 export const Registration: React.FC = () => {
@@ -51,7 +55,7 @@ export const Registration: React.FC = () => {
             color={defaultStyles.colors.black}
           />
         </TouchableHighlight>
-        <Text style={styles.title}>Ecommerce Store</Text>
+        <Text style={styles.title}>{nameOfStore}</Text>
         <TextInput
           value={fullName}
           onChangeText={changeFullNameHandler}

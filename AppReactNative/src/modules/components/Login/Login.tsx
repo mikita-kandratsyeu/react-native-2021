@@ -10,7 +10,11 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
-import { defaultStyles, backgroundGradientColors } from '../../../constans';
+import {
+  defaultStyles,
+  backgroundGradientColors,
+  nameOfStore,
+} from '../../../constans';
 import { loginIntoSystem, setUserData } from '../../../actions';
 import styles from './LoginStyles';
 
@@ -48,7 +52,7 @@ export const Login: React.FC = () => {
   return (
     <LinearGradient colors={backgroundGradientColors} style={styles.container}>
       <KeyboardAvoidingView behavior="position" style={styles.container}>
-        <Text style={styles.title}>Ecommerce Store</Text>
+        <Text style={styles.title}>{nameOfStore}</Text>
         <TextInput
           value={login}
           onChangeText={(text: string) => changeLoginHandler(text)}
