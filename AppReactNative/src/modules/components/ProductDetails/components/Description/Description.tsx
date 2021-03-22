@@ -1,5 +1,9 @@
 import React from 'react';
-import { Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { IDescriptionProps } from './interfaces';

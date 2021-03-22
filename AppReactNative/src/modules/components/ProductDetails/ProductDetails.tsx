@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ScrollView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { getProductsSelector } from '../../../selectors';
 import { setProducts } from '../../../actions';
 import { products } from '../../../mock';

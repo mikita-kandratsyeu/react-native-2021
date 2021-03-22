@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../Header';
 import { nameOfStore } from '../../../constans';

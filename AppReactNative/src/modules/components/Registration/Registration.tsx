@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { KeyboardAvoidingView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput } from 'react-native';
 import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
