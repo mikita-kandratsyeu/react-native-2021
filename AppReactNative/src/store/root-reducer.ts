@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
-import { changeValueReducer } from '../reducers';
+import {
+  changeValueReducer,
+  setUserDataReducer,
+  setProductsReducer,
+} from '../reducers';
 
 const createRootReducer = () =>
   combineReducers({
-    defaultState: changeValueReducer,
+    counter: changeValueReducer,
+    user: setUserDataReducer,
+    products: setProductsReducer,
   });
 
 export default createRootReducer;
