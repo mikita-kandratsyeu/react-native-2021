@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "\"eslint . --ext .tsx,.ts --ignore-pattern node_modules/",
+    "lint": "eslint . --ext .tsx,.ts --ignore-pattern node_modules/",
     "lint:fix": "npm run lint -- --fix",
     "android-debug": "adb reverse tcp:9090 tcp:9090"
   },
