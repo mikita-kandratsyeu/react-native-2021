@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  Alert,
-  Button,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, Alert } from 'react-native';
+import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 import {
   defaultStyles,
   backgroundGradientColors,
   nameOfStore,
+  opacityButton,
 } from '../../../constans';
 import { loginIntoSystem, setUserData } from '../../../actions';
 import styles from './LoginStyles';
@@ -74,17 +68,19 @@ export const Login: React.FC = () => {
           secureTextEntry
           textContentType="password"
         />
-        <TouchableHighlight style={styles.restoreButton}>
+        <TouchableHighlight
+          style={styles.restoreButton}
+          underlayColor={defaultStyles.colors.pressText}>
           <Text style={styles.link}>Forgot password?</Text>
         </TouchableHighlight>
-        <View style={styles.loginButton}>
-          <Button
-            title="Login"
-            onPress={submitHandler}
-            disabled={isButtonDisabled}
-          />
-        </View>
-        <TouchableHighlight style={styles.registrationButton}>
+        <RectButton
+          style={[styles.loginButton, isButtonDisabled && opacityButton]}
+          onPress={submitHandler}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </RectButton>
+        <TouchableHighlight
+          style={styles.registrationButton}
+          underlayColor={defaultStyles.colors.pressText}>
           <Text style={styles.link}>New here? Registration</Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

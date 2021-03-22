@@ -33,15 +33,24 @@ const styles = StyleSheet.create({
     fontSize: defaultStyles.fontSize.medium,
   },
 
-  registrationButton: {
+  loginButton: {
     alignSelf: 'center',
   },
 
-  loginButton: {
+  registrationButton: {
     ...margins,
-    marginTop: defaultStyles.margin.small,
+    marginTop: defaultStyles.margin.medium,
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  registrationButtonText: {
+    color: defaultStyles.colors.white,
+    fontWeight: 'bold',
+    fontSize: defaultStyles.fontSize.small,
   },
 
   link: {

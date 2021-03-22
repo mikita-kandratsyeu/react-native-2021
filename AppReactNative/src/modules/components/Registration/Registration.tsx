@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  Button,
-  KeyboardAvoidingView,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, View } from 'react-native';
+import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -44,17 +38,17 @@ export const Registration: React.FC = () => {
 
   return (
     <LinearGradient colors={backgroundGradientColors} style={styles.container}>
-      <KeyboardAvoidingView behavior="position" style={styles.container}>
-        <TouchableHighlight
-          style={styles.iconArrowBack}
-          underlayColor={defaultStyles.colors.grey}
-          onPress={() => {}}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            size={defaultStyles.fontSize.medium}
-            color={defaultStyles.colors.black}
-          />
-        </TouchableHighlight>
+      <TouchableHighlight
+        style={styles.iconArrowBack}
+        underlayColor={defaultStyles.colors.grey}
+        onPress={() => {}}>
+        <FontAwesomeIcon
+          icon={faArrowLeft}
+          size={defaultStyles.fontSize.medium}
+          color={defaultStyles.colors.black}
+        />
+      </TouchableHighlight>
+      <KeyboardAvoidingView behavior="padding">
         <Text style={styles.title}>{nameOfStore}</Text>
         <TextInput
           value={fullName}
@@ -97,10 +91,10 @@ export const Registration: React.FC = () => {
           secureTextEntry
           textContentType="password"
         />
-        <View style={styles.loginButton}>
-          <Button title="Registration" onPress={submitHandler} />
-        </View>
-        <TouchableHighlight style={styles.registrationButton}>
+        <RectButton style={styles.registrationButton} onPress={submitHandler}>
+          <Text style={styles.registrationButtonText}>Registration</Text>
+        </RectButton>
+        <TouchableHighlight style={styles.loginButton}>
           <Text style={styles.link}>Already have an account? Login</Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

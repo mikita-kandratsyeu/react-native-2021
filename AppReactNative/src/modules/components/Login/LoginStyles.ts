@@ -41,6 +41,15 @@ const styles = StyleSheet.create({
     ...margins,
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  loginButtonText: {
+    color: defaultStyles.colors.white,
+    fontWeight: 'bold',
+    fontSize: defaultStyles.fontSize.small,
   },
 
   link: {
