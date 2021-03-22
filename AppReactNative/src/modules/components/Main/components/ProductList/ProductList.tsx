@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { IProductListProps } from './interfaces';
 import { defaultStyles } from '../../../../../constans';

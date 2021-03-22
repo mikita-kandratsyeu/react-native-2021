@@ -4,9 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { getProductsSelector } from '../../../selectors';
 import { setProducts } from '../../../actions';
 import { products } from '../../../mock';
-import { Header } from '../Header';
-import { Separator } from '../UI';
-import { Product } from '../Product';
+import { Product, Separator, Header } from '..';
 import { ColorSelect, Description } from './components';
 
 export const ProductDetails: React.FC = () => {

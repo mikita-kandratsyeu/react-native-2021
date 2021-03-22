@@ -5,4 +5,5 @@ export * from './Header';
 export * from './Main';
 export * from './Product';
 export * from './ProductDetails';
+export * from './Application';
 export * from './UI';

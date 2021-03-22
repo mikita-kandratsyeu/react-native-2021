@@ -75,6 +75,7 @@ export const Login: React.FC = () => {
         </TouchableHighlight>
         <RectButton
           style={[styles.loginButton, isButtonDisabled && opacityButton]}
+          enabled={!isButtonDisabled}
           onPress={submitHandler}>
           <Text style={styles.loginButtonText}>Login</Text>
         </RectButton>

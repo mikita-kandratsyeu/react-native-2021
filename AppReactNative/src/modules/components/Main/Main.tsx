@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from '../Header';
+import { Header, Separator } from '..';
 import { nameOfStore } from '../../../constans';
-import { Separator } from '../UI';
 import { setProducts } from '../../../actions';
 import { products } from '../../../mock';
 import { getProductsSelector } from '../../../selectors';
@@ -41,13 +40,17 @@ export const Main: React.FC = () => {
       </View>
       <Separator />
       <View style={styles.productList}>
-        {productsData.length ? (
-          <ProductList currentCategory={productsData[0]} />
-        ) : (
-          <View>
-            <Text>Loading...</Text>
-          </View>
-        )}
+        <ScrollView>
+          {productsData.length ? (
+            <>
+              <ProductList currentCategory={productsData[0]} />
+            </>
+          ) : (
+            <View>
+              <Text>Loading...</Text>
+            </View>
+          )}
+        </ScrollView>
       </View>
     </View>
   );
