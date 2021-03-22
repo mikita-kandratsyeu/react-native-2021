@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "\"eslint . --ext .tsx,.ts --ignore-pattern node_modules/",
     "lint:fix": "npm run lint -- --fix",
     "android-debug": "adb reverse tcp:9090 tcp:9090"
   },
@@ -71,6 +71,13 @@
       "jsx",
       "json",
       "node"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts, tsx}": [
+      "node_modules/.bin/eslint --max-warnings=0",
+      "prettier --write",
+      "git add"
     ]
   }
 }
