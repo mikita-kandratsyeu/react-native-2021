@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "precommit": "lint-staged",
     "test": "jest",
     "lint": "eslint . --ext .tsx,.ts --ignore-pattern node_modules/",
     "lint:fix": "npm run lint -- --fix",
@@ -75,9 +76,14 @@
   },
   "lint-staged": {
     "*.{ts, tsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
+      "npm run lint:fix",
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   }
 }
