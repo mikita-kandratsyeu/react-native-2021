@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, Text, TextInput } from 'react-native';
 import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   backgroundGradientColors,
   defaultStyles,
@@ -12,6 +13,8 @@ import {
 import styles from './RegistrationStyles';
 
 export const Registration: React.FC = () => {
+  const navigator = useNavigation();
+
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -40,8 +43,8 @@ export const Registration: React.FC = () => {
     <LinearGradient colors={backgroundGradientColors} style={styles.container}>
       <TouchableHighlight
         style={styles.iconArrowBack}
-        underlayColor={defaultStyles.colors.grey}
-        onPress={() => {}}>
+        underlayColor={defaultStyles.colors.pressLink}
+        onPress={() => navigator.goBack()}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size={defaultStyles.fontSize.medium}
@@ -94,7 +97,10 @@ export const Registration: React.FC = () => {
         <RectButton style={styles.registrationButton} onPress={submitHandler}>
           <Text style={styles.registrationButtonText}>Registration</Text>
         </RectButton>
-        <TouchableHighlight style={styles.loginButton}>
+        <TouchableHighlight
+          style={styles.loginButton}
+          underlayColor={defaultStyles.colors.pressLink}
+          onPress={() => navigator.navigate('Login')}>
           <Text style={styles.link}>Already have an account? Login</Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

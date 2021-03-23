@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Text, TextInput, Alert } from 'react-native';
 import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 import {
@@ -13,6 +14,7 @@ import { loginIntoSystem, setUserData } from '../../../actions';
 import styles from './LoginStyles';
 
 export const Login: React.FC = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState<string>('');
@@ -34,7 +36,7 @@ export const Login: React.FC = () => {
       if (res) {
         dispatch(setUserData(login, res.token));
 
-        Alert.alert('Success', `Your token: ${res.token}`);
+        Alert.alert(`Welcome to ${nameOfStore}`, `Your token: ${res.token}`);
       } else {
         Alert.alert('Error', 'Something went wrong! Try again!');
       }
@@ -69,9 +71,10 @@ export const Login: React.FC = () => {
           textContentType="password"
         />
         <TouchableHighlight
-          style={styles.restoreButton}
-          underlayColor={defaultStyles.colors.pressText}>
-          <Text style={styles.link}>Forgot password?</Text>
+          style={styles.registrationButton}
+          underlayColor={defaultStyles.colors.pressLink}
+          onPress={() => navigation.navigate('Registration')}>
+          <Text style={styles.link}>New here? Registration</Text>
         </TouchableHighlight>
         <RectButton
           style={[styles.loginButton, isButtonDisabled && opacityButton]}
@@ -79,11 +82,6 @@ export const Login: React.FC = () => {
           onPress={submitHandler}>
           <Text style={styles.loginButtonText}>Login</Text>
         </RectButton>
-        <TouchableHighlight
-          style={styles.registrationButton}
-          underlayColor={defaultStyles.colors.pressText}>
-          <Text style={styles.link}>New here? Registration</Text>
-        </TouchableHighlight>
       </KeyboardAvoidingView>
     </LinearGradient>
   );

@@ -27,7 +27,7 @@ export const defaultStyles = {
     link: '#436BFF',
     button: '#C6FF00',
     grey: '#8EACBB',
-    pressText: 'rgba(73,182,77,1,0.9)',
+    pressLink: 'rgba(73,182,77,1,0.9)',
   },
 };
 

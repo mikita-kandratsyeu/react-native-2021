@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 
   title: {
     ...margins,
-    marginTop: defaultStyles.margin.medium,
+    marginTop: defaultStyles.margin.small,
     backgroundColor: defaultStyles.colors.transparent,
     fontSize: defaultStyles.fontSize.large,
     textAlign: 'center',

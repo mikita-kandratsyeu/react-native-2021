@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 import { IProductCategoryProps } from './interfaces';
 import styles from './ProductCategoryStyles';
 
