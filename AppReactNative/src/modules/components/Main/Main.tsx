@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header, Separator } from '..';
@@ -25,9 +25,7 @@ export const Main: React.FC = () => {
         <ProductCategory key={category.id} productCategory={category} />
       ))
     ) : (
-      <View>
-        <Text>Loading...</Text>
-      </View>
+      <ActivityIndicator />
     );
 
   return (
@@ -40,17 +38,13 @@ export const Main: React.FC = () => {
       </View>
       <Separator />
       <View style={styles.productList}>
-        <ScrollView>
-          {productsData.length ? (
-            <>
-              <ProductList currentCategory={productsData[0]} />
-            </>
-          ) : (
-            <View>
-              <Text>Loading...</Text>
-            </View>
-          )}
-        </ScrollView>
+        {productsData.length ? (
+          <>
+            <ProductList currentCategory={productsData[0]} />
+          </>
+        ) : (
+          <ActivityIndicator />
+        )}
       </View>
     </View>
   );

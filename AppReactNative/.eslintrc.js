@@ -16,6 +16,7 @@ module.exports = {
     'no-debugger': 'off',
     'import/no-unresolved': 0,
     'react/prop-types': 0,
+    'react/no-unused-prop-types': 0,
     'import/extensions': 0,
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
