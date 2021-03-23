@@ -1,3 +1,9 @@
+export type StackParamsList = {
+  productDetails: {
+    product: IProduct;
+  };
+};
+
 export interface ICounter {
   value: number;
 }

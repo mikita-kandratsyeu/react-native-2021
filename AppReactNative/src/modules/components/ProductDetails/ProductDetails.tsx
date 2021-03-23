@@ -1,32 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { getProductsSelector } from '../../../selectors';
-import { setProducts } from '../../../actions';
-import { products } from '../../../mock';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { Product, Separator, Header } from '..';
 import { ColorSelect, Description } from './components';
+import { StackParamsList } from '../../interfaces';
 
 export const ProductDetails: React.FC = () => {
-  // TODO: In the future task "product" will pass through props.
-  const dispatch = useDispatch();
+  const route = useRoute<RouteProp<StackParamsList, 'productDetails'>>();
 
-  const productsData = useSelector(getProductsSelector);
-
-  useEffect(() => {
-    dispatch(setProducts(products));
-  }, [dispatch]);
+  const { product } = route.params;
 
   return (
     <ScrollView>
-      {productsData.length && productsData[0].items ? (
+      {product ? (
         <>
           <Header />
-          <Product product={productsData[0].items[0]} isExtend />
+          <Product product={product} isExtend />
           <Separator />
-          <ColorSelect colors={productsData[0].items[0].colors} />
+          <ColorSelect colors={product.colors} />
           <Separator />
-          <Description description={productsData[0].items[0].description} />
+          <Description description={product.description} />
         </>
       ) : null}
     </ScrollView>

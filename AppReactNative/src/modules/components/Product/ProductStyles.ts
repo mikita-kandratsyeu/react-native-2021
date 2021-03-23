@@ -3,14 +3,15 @@ import { defaultStyles } from '../../../constans';
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 'auto',
-    flexBasis: 190,
-    flexShrink: 2,
-    padding: defaultStyles.padding.medium,
     marginBottom: defaultStyles.margin.small,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 190,
+    height: 150,
     borderRadius: 5,
     borderWidth: 2,
     borderColor: defaultStyles.colors.grey,
+    backgroundColor: defaultStyles.colors.white,
   },
 
   imageWrapper: {
@@ -68,7 +69,7 @@ export const extendStyles = StyleSheet.create({
 
   image: {
     height: 250,
-    width: 180,
+    width: '100%',
   },
 
   title: {

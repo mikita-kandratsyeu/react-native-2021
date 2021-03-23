@@ -1,13 +1,25 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import { IProductProps } from './interfaces';
 import styles, { extendStyles } from './ProductStyles';
 
 export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
   const style = isExtend ? extendStyles : styles;
 
+  const navigator = useNavigation();
+
   return (
-    <View style={style.container}>
+    <TouchableOpacity
+      style={style.container}
+      onPress={() =>
+        isExtend
+          ? null
+          : navigator.navigate('ProductDetails', {
+              product,
+            })
+      }>
       <View style={style.imageWrapper}>
         <Image source={product.images[0].source} style={style.image} />
       </View>
@@ -22,6 +34,6 @@ export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
         <Text style={style.oldPrice}>{product.oldPrice}</Text>
         <Text style={style.discount}>{`${product.discount}% Off`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
