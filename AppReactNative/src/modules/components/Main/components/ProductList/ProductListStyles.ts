@@ -3,6 +3,8 @@ import { defaultStyles } from '../../../../../constans';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    padding: defaultStyles.padding.large,
     alignItems: 'stretch',
   },
 
@@ -34,7 +36,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  productContainer: {
+  productListContainer: {
+    flex: 1,
+  },
+
+  productColumnWrapper: {
     justifyContent: 'space-between',
   },
 });

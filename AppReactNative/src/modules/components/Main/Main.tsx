@@ -37,15 +37,11 @@ export const Main: React.FC = () => {
         </ScrollView>
       </View>
       <Separator />
-      <View style={styles.productList}>
-        {productsData.length ? (
-          <>
-            <ProductList currentCategory={productsData[0]} />
-          </>
-        ) : (
-          <ActivityIndicator />
-        )}
-      </View>
+      {productsData.length ? (
+        <ProductList currentCategory={productsData[0]} />
+      ) : (
+        <ActivityIndicator />
+      )}
     </View>
   );
 };

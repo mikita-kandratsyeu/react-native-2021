@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { RefreshControl, Text, View } from 'react-native';
+import { RefreshControl, SafeAreaView, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { IProductListProps } from './interfaces';
 import { IProduct } from '../../../../interfaces';
 import { defaultStyles } from '../../../../../constans';
-import styles from './ProductListStyles';
 import { Product } from '../../../Product';
+import styles from './ProductListStyles';
 
 export const ProductList: React.FC<IProductListProps> = ({
   currentCategory,
 }) => {
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
   const refreshingHandler = (): void => {
+    setIsRefreshing(true);
+
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 3000);
     // TODO: add refreshing data from API
   };
 
@@ -29,21 +33,24 @@ export const ProductList: React.FC<IProductListProps> = ({
         </TouchableHighlight>
       </View>
       {currentCategory.items?.length ? (
-        <FlatList
-          columnWrapperStyle={styles.productContainer}
-          keyExtractor={(item: IProduct) => item.id}
-          data={currentCategory.items}
-          numColumns={2}
-          renderItem={({ item }: { item: IProduct }) => (
-            <Product product={item} />
-          )}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={refreshingHandler}
-            />
-          }
-        />
+        <SafeAreaView style={styles.productListContainer}>
+          <FlatList
+            columnWrapperStyle={styles.productColumnWrapper}
+            keyExtractor={(item: IProduct) => item.id}
+            data={currentCategory.items}
+            numColumns={2}
+            renderItem={({ item }: { item: IProduct }) => (
+              <Product product={item} />
+            )}
+            refreshControl={
+              <RefreshControl
+                enabled
+                refreshing={isRefreshing}
+                onRefresh={refreshingHandler}
+              />
+            }
+          />
+        </SafeAreaView>
       ) : (
         <Text>There are no products in this category</Text>
       )}

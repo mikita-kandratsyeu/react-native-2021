@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { defaultStyles } from '../../../constans';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,10 +11,6 @@ const styles = StyleSheet.create({
 
   productCategoryScroll: {
     height: 100,
-  },
-
-  productList: {
-    padding: defaultStyles.padding.large,
   },
 });
 
