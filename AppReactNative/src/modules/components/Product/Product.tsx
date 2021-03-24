@@ -12,6 +12,7 @@ export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
 
   return (
     <TouchableOpacity
+      disabled={isExtend}
       style={style.container}
       onPress={() =>
         isExtend

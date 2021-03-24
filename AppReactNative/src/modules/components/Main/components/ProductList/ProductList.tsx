@@ -10,6 +10,7 @@ import styles from './ProductListStyles';
 export const ProductList: React.FC<IProductListProps> = ({
   currentCategory,
 }) => {
+  const [productsData, setProductsData] = useState(currentCategory.items || []);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
   const refreshingHandler = (): void => {
@@ -17,8 +18,8 @@ export const ProductList: React.FC<IProductListProps> = ({
 
     setTimeout(() => {
       setIsRefreshing(false);
+      setProductsData([]);
     }, 3000);
-    // TODO: add refreshing data from API
   };
 
   return (
@@ -32,12 +33,12 @@ export const ProductList: React.FC<IProductListProps> = ({
           <Text style={styles.viewAllButtonText}>View all</Text>
         </TouchableHighlight>
       </View>
-      {currentCategory.items?.length ? (
+      {productsData.length ? (
         <SafeAreaView style={styles.productListContainer}>
           <FlatList
             columnWrapperStyle={styles.productColumnWrapper}
             keyExtractor={(item: IProduct) => item.id}
-            data={currentCategory.items}
+            data={productsData}
             numColumns={2}
             renderItem={({ item }: { item: IProduct }) => (
               <Product product={item} />

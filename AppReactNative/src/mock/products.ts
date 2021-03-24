@@ -79,6 +79,30 @@ export const products: ICategory[] = [
         description:
           'часы-компаньон, поддержка iOS, экран AMOLED 1.78" (368x448, сенсорный), шагомер, пульсометр, время работы: 18 часов',
       },
+      {
+        id: 'watch11',
+        name: 'Apple Watch Series 6',
+        price: 1200,
+        oldPrice: 1500,
+        discount: 25,
+        images: [
+          {
+            id: 'image1',
+            source: require('../../assets/img/apple-watch-6-front.jpeg'),
+          },
+          {
+            id: 'image2',
+            source: require('../../assets/img/apple-watch-6-equipment.jpeg'),
+          },
+        ],
+        colors: [
+          { id: 'black', name: 'Black' },
+          { id: 'red', name: 'Red' },
+          { id: 'white', name: 'White' },
+        ],
+        description:
+          'часы-компаньон, поддержка iOS, экран AMOLED 1.78" (368x448, сенсорный), шагомер, пульсометр, время работы: 18 часов',
+      },
     ],
   },
   {

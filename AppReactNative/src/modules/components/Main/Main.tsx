@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header, Separator } from '..';
-import { nameOfStore } from '../../../constans';
+import { Header, Search, Separator } from '..';
+import { nameOfStore, defaultStyles } from '../../../constans';
 import { setProducts } from '../../../actions';
 import { products } from '../../../mock';
 import { getProductsSelector } from '../../../selectors';
 import { ProductCategory, ProductList } from './components';
+
 import styles from './MainStyles';
 
 export const Main: React.FC = () => {
@@ -25,12 +26,13 @@ export const Main: React.FC = () => {
         <ProductCategory key={category.id} productCategory={category} />
       ))
     ) : (
-      <ActivityIndicator />
+      <ActivityIndicator color={defaultStyles.colors.blue} />
     );
 
   return (
     <View style={styles.container}>
-      <Header title={nameOfStore} isSearchVisible isToggleButtonVisible />
+      {/* <Header title={nameOfStore} isSearchVisible isToggleButtonVisible /> */}
+      <Search isVisible placeholder="Search for products..." />
       <View style={styles.productCategoryScroll}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.productCategory}>{renderProductCategory()}</View>
