@@ -28,7 +28,7 @@ export const ProductList: React.FC<IProductListProps> = ({
         <Text style={styles.productListTitle}>{currentCategory.name}</Text>
         <TouchableHighlight
           style={styles.viewAllButton}
-          underlayColor={defaultStyles.colors.grey}
+          underlayColor={defaultStyles.colors.pressLink}
           onPress={() => {}}>
           <Text style={styles.viewAllButtonText}>View all</Text>
         </TouchableHighlight>

@@ -117,7 +117,11 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           onPress={() => null}
         />
       </View>
-      <View style={styles.group}>
+      <View
+        style={[
+          styles.group,
+          { borderColor: defaultStyles.colors.transparent },
+        ]}>
         <Text style={styles.groupHeaderTitle}>Others</Text>
         <DrawerItem
           label="Share"
