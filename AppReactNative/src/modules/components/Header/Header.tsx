@@ -52,7 +52,7 @@ export const Header: React.FC<IHeaderProps> = ({
           <TouchableHighlight
             style={styles.iconButton}
             underlayColor={defaultStyles.colors.pressLink}
-            onPress={() => null}>
+            onPress={() => navigator.navigate('MockComponent')}>
             <IconSearch
               isVisible={!isSearchVisible}
               color={defaultStyles.colors.white}
@@ -61,7 +61,7 @@ export const Header: React.FC<IHeaderProps> = ({
           <TouchableHighlight
             style={styles.iconButton}
             underlayColor={defaultStyles.colors.pressLink}
-            onPress={() => null}>
+            onPress={() => navigator.navigate('MockComponent')}>
             <FontAwesomeIcon
               icon={faShoppingCart}
               size={defaultStyles.fontSize.large}

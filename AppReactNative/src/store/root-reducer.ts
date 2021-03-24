@@ -9,7 +9,8 @@ const createRootReducer = () =>
   combineReducers({
     counter: changeValueReducer,
     user: setUserDataReducer,
-    products: setProductsReducer,
+    productsMock: setProductsReducer,
+    // categoriesApi: setCategoriesApi,
   });
 
 export default createRootReducer;

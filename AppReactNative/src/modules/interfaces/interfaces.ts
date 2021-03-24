@@ -49,6 +49,17 @@ export interface IUserState {
   user: IUser;
 }
 
-export interface IProductsState {
-  products: ICategory[];
+export interface IProductsMockState {
+  productsMock: ICategory[];
+}
+
+// TODO: Implement getting data from API
+export interface ICategoryApi {
+  id: string;
+  name: string;
+  imageUrl: string;
+}
+
+export interface ICategoriesApiState {
+  categoriesApi: ICategoryApi[];
 }

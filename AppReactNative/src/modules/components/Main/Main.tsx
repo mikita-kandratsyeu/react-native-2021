@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,8 @@ import styles from './MainStyles';
 
 export const Main: React.FC = () => {
   const productsData = useSelector(getProductsSelector);
+
+  useEffect(() => {}, []);
 
   const renderProductCategory = (): React.ReactNode =>
     productsData.length ? (

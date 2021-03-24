@@ -47,6 +47,7 @@ export const Application: React.FC = () => {
           <>
             <Stack.Screen name="Main" component={drawerRoutes} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
+            <Stack.Screen name="MockComponent" component={MockComponent} />
           </>
         ) : (
           <>
