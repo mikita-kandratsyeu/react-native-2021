@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { Header, Separator } from '..';
-import { nameOfStore, defaultStyles } from '../../../constans';
+import { defaultStyles } from '../../../constans';
 import { getProductsSelector } from '../../../selectors';
 import { ProductCategory, ProductList } from './components';
 
@@ -23,7 +23,7 @@ export const Main: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header title={nameOfStore} isSearchVisible isToggleButtonVisible />
+      <Header isSearchVisible isToggleButtonVisible />
       <View style={styles.productCategoryScroll}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.productCategory}>{renderProductCategory()}</View>

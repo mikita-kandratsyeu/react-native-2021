@@ -4,6 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from '@react-navigation/drawer';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faUser,
@@ -13,14 +14,17 @@ import {
   faEnvelope,
   faPhone,
   faShare,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { setUserData } from '../../../actions';
 import { defaultStyles, nameOfStore } from '../../../constans';
 import styles from './CustomDrawerStyles';
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const navigator = useNavigation();
+  const dispatch = useDispatch();
 
   return (
     <DrawerContentScrollView {...props} style={styles.container}>
@@ -136,6 +140,20 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             />
           )}
           onPress={() => null}
+        />
+        <DrawerItem
+          label="Logout"
+          labelStyle={styles.labelStyle}
+          style={styles.item}
+          icon={() => (
+            <FontAwesomeIcon
+              style={styles.itemIcon}
+              icon={faSignOutAlt}
+              size={defaultStyles.fontSize.large}
+              color={defaultStyles.colors.blue}
+            />
+          )}
+          onPress={() => dispatch(setUserData('', ''))}
         />
       </View>
     </DrawerContentScrollView>

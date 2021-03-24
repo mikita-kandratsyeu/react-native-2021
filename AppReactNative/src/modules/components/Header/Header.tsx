@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
@@ -14,7 +14,6 @@ import { defaultStyles } from '../../../constans';
 import styles from './HeaderStyles';
 
 export const Header: React.FC<IHeaderProps> = ({
-  title = '',
   isToggleButtonVisible,
   isSearchVisible,
 }) => {
@@ -49,7 +48,6 @@ export const Header: React.FC<IHeaderProps> = ({
     <View>
       <View style={styles.container}>
         {renderLeftHeaderControl()}
-        <Text style={styles.title}>{title}</Text>
         <View style={styles.rightHeaderControl}>
           <TouchableHighlight
             style={styles.iconButton}
