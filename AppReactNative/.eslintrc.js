@@ -14,6 +14,7 @@ module.exports = {
   plugins: ['react', 'react-native', '@typescript-eslint', 'prettier'],
   rules: {
     'no-debugger': 'off',
+    'react/jsx-props-no-spreading': 0,
     'import/no-unresolved': 0,
     'react/prop-types': 0,
     'react/no-unused-prop-types': 0,

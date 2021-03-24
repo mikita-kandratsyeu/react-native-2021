@@ -7,6 +7,7 @@ import {
   faBars,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IHeaderProps } from './interfaces';
 import { Search, IconSearch } from '../UI';
 import { defaultStyles } from '../../../constans';
@@ -17,12 +18,14 @@ export const Header: React.FC<IHeaderProps> = ({
   isToggleButtonVisible,
   isSearchVisible,
 }) => {
+  const navigator = useNavigation();
+
   const renderLeftHeaderControl = (): React.ReactNode =>
     isToggleButtonVisible ? (
       <TouchableHighlight
         style={styles.iconButton}
-        underlayColor={defaultStyles.colors.grey}
-        onPress={() => {}}>
+        underlayColor={defaultStyles.colors.pressLink}
+        onPress={() => navigator.dispatch(DrawerActions.toggleDrawer())}>
         <FontAwesomeIcon
           icon={faBars}
           size={defaultStyles.fontSize.large}
@@ -32,8 +35,8 @@ export const Header: React.FC<IHeaderProps> = ({
     ) : (
       <TouchableHighlight
         style={styles.iconButton}
-        underlayColor={defaultStyles.colors.grey}
-        onPress={() => {}}>
+        underlayColor={defaultStyles.colors.pressLink}
+        onPress={() => navigator.goBack()}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size={defaultStyles.fontSize.large}
@@ -50,8 +53,8 @@ export const Header: React.FC<IHeaderProps> = ({
         <View style={styles.rightHeaderControl}>
           <TouchableHighlight
             style={styles.iconButton}
-            underlayColor={defaultStyles.colors.transparent}
-            onPress={() => {}}>
+            underlayColor={defaultStyles.colors.pressLink}
+            onPress={() => null}>
             <IconSearch
               isVisible={!isSearchVisible}
               color={defaultStyles.colors.white}
@@ -59,8 +62,8 @@ export const Header: React.FC<IHeaderProps> = ({
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.iconButton}
-            underlayColor={defaultStyles.colors.grey}
-            onPress={() => {}}>
+            underlayColor={defaultStyles.colors.pressLink}
+            onPress={() => null}>
             <FontAwesomeIcon
               icon={faShoppingCart}
               size={defaultStyles.fontSize.large}

@@ -8,3 +8,4 @@ export * from './ProductDetails';
 export * from './Application';
 export * from './UI';
 export * from './MockComponent';
+export * from './CustomDrawer';
