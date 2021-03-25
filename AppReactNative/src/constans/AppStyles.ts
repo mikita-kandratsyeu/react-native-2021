@@ -45,3 +45,8 @@ export const margins = {
 export const opacityButton = {
   opacity: 0.5,
 };
+
+export const spinner = {
+  flex: 1,
+  marginTop: defaultStyles.margin.medium,
+};

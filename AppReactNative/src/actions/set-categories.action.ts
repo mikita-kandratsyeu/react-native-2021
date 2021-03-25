@@ -22,7 +22,6 @@ export const getCategories = () =>
         }),
       );
 
-      // Remove category #68 because name is too long
-      return Promise.resolve(categories.filter(item => item.id !== '68'));
+      return Promise.resolve(categories);
     })
     .catch(err => console.error(err));

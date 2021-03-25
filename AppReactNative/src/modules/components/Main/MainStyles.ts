@@ -4,6 +4,7 @@ import { defaultStyles } from '../../../constans';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: defaultStyles.colors.white,
   },
 
   productCategory: {
@@ -12,11 +13,6 @@ const styles = StyleSheet.create({
 
   productCategoryScroll: {
     height: 100,
-  },
-
-  spinner: {
-    flex: 1,
-    marginTop: defaultStyles.margin.medium,
   },
 });
 

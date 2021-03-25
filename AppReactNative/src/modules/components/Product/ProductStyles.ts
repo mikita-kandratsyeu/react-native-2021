@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 190,
-    height: 170,
+    height: 180,
     borderRadius: 5,
     borderWidth: 2,
     borderColor: defaultStyles.colors.grey,
@@ -21,10 +21,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     overflow: 'hidden',
     marginTop: defaultStyles.margin.small,
+    marginBottom: defaultStyles.margin.small,
   },
 
   image: {
-    height: 80,
+    height: 110,
     width: 120,
   },
 
@@ -70,7 +71,7 @@ export const extendStyles = StyleSheet.create({
   },
 
   image: {
-    height: 250,
+    height: 350,
     width: '100%',
   },
 
@@ -80,12 +81,13 @@ export const extendStyles = StyleSheet.create({
   },
 
   priceWrapper: {
+    marginTop: defaultStyles.margin.medium,
     flexDirection: 'row',
   },
 
   price: {
     fontWeight: 'bold',
-    fontSize: defaultStyles.fontSize.medium,
+    fontSize: defaultStyles.fontSize.large,
   },
 
   oldPrice: {
@@ -103,10 +105,11 @@ export const extendStyles = StyleSheet.create({
   },
 
   inStockWrapper: {
-    marginTop: defaultStyles.margin.medium,
+    marginTop: defaultStyles.margin.large,
+    marginBottom: defaultStyles.margin.large,
     backgroundColor: defaultStyles.colors.blue,
     padding: defaultStyles.padding.large,
-    width: 100,
+    width: 120,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 'auto',

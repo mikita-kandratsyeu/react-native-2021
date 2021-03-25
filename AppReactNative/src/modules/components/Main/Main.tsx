@@ -3,7 +3,7 @@ import { ActivityIndicator, Alert, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header, Separator } from '..';
-import { defaultStyles } from '../../../constans';
+import { defaultStyles, spinner } from '../../../constans';
 import { getCategoriesSelector } from '../../../selectors';
 import { ProductCategory, ProductList } from './components';
 import {
@@ -90,7 +90,7 @@ export const Main: React.FC = () => {
           />
         </>
       ) : (
-        <View style={styles.spinner}>
+        <View style={spinner}>
           <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
         </View>
       )}

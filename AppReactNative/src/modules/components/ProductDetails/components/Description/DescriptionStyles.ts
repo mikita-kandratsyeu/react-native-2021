@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   description: {
     paddingTop: defaultStyles.padding.small,
     paddingBottom: defaultStyles.padding.small,
-    marginBottom: defaultStyles.padding.small,
+    marginBottom: defaultStyles.padding.large,
     fontSize: defaultStyles.fontSize.small,
   },
 

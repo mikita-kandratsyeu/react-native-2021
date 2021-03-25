@@ -10,7 +10,7 @@ import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { IProductListProps } from './interfaces';
 import { IProduct } from '../../../../interfaces';
-import { defaultStyles } from '../../../../../constans';
+import { defaultStyles, spinner } from '../../../../../constans';
 import { Product } from '../../../Product';
 import { getProductsSelector } from '../../../../../selectors';
 import { getProducts, setProductsAction } from '../../../../../actions';
@@ -67,7 +67,7 @@ export const ProductList: React.FC<IProductListProps> = ({
           />
         </SafeAreaView>
       ) : (
-        <View style={styles.spinner}>
+        <View style={spinner}>
           <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
         </View>
       )}

@@ -61,22 +61,15 @@ export interface ICategoriesState {
   categories: ICategory[];
 }
 
-export interface IProductOptions {
-  id: string;
-  name: string;
-}
-
 export interface IProduct {
   id: string;
   name: string;
   price: number | string;
-  currency?: string;
-  description?: string;
   source: {
     uri: string;
   };
+  description?: string;
   stockStatus?: string;
-  options?: IProductOptions[];
 }
 
 export interface IProductsState {

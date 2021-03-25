@@ -5,6 +5,14 @@ export const removeUnnecessarySymbols = (str: string): string => {
     '&lt;p&gt;',
     '&lt;/p&gt;',
     '&amp;',
+    '$',
+    '<li>',
+    '</li>',
+    '&nbsp;',
+    '<br/>',
+    '<br>',
+    '<ul>',
+    '</ul>',
   ];
 
   let copyString: string = str;
@@ -13,5 +21,13 @@ export const removeUnnecessarySymbols = (str: string): string => {
     copyString = copyString.replace(item, '');
   });
 
-  return copyString.trim();
+  return copyString.replace(/\s+/g, ' ').trim();
+};
+
+export const getTruncatedString = (originString: string, maxlength: number) => {
+  if (originString.length > maxlength) {
+    return `${originString.substring(0, maxlength)}...`;
+  }
+
+  return originString;
 };

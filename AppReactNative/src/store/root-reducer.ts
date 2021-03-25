@@ -5,6 +5,7 @@ import {
   setProductsMockReducer,
   setCategoriesReducer,
   setProductsReducer,
+  setCurrentProductReducer,
 } from '../reducers';
 
 const createRootReducer = () =>
@@ -14,7 +15,7 @@ const createRootReducer = () =>
     productsMock: setProductsMockReducer,
     categories: setCategoriesReducer,
     products: setProductsReducer,
-    // currentProduct: setCurrentProductReducer,
+    currentProduct: setCurrentProductReducer,
   });
 
 export default createRootReducer;

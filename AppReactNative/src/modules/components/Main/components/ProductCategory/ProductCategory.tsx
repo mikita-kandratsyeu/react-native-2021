@@ -2,8 +2,9 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { IProductCategoryProps } from './interfaces';
-import { defaultStyles } from '../../../../../constans';
+import { defaultStyles, maxLengthCategoryTitle } from '../../../../../constans';
 import { productsMock } from '../../../../../mock';
+import { getTruncatedString } from '../../../../../services';
 import styles from './ProductCategoryStyles';
 
 export const ProductCategory: React.FC<IProductCategoryProps> = ({
@@ -26,7 +27,9 @@ export const ProductCategory: React.FC<IProductCategoryProps> = ({
         <View style={styles.imageWrapper}>
           <Image source={categoryIcon} style={styles.image} />
         </View>
-        <Text style={styles.title}>{productCategory.name}</Text>
+        <Text style={styles.title}>
+          {getTruncatedString(productCategory.name, maxLengthCategoryTitle)}
+        </Text>
       </View>
     </TouchableHighlight>
   );
