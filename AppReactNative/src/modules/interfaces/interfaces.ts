@@ -1,9 +1,3 @@
-export type StackParamsList = {
-  productDetails: {
-    product: IProduct;
-  };
-};
-
 export interface ICounter {
   value: number;
 }
@@ -13,32 +7,33 @@ export interface IUser {
   token: string;
 }
 
-export interface IProductImage {
+// Interfaces for mock data
+export interface IProductMockImage {
   id: string;
   source: any;
 }
 
-export interface IProductColor {
+export interface IProductMockColor {
   id: string;
   name: string;
 }
 
-export interface IProduct {
+export interface IProductMock {
   id: string;
   name: string;
   price: number;
   oldPrice?: number;
   discount?: number;
-  images: IProductImage[];
-  colors: IProductColor[];
+  images: IProductMockImage[];
+  colors: IProductMockColor[];
   description: string;
 }
 
-export interface ICategory {
+export interface ICategoryMock {
   id: string;
   name: string;
   source: any;
-  items?: IProduct[];
+  items?: IProductMock[];
 }
 
 export interface ICounterState {
@@ -50,16 +45,44 @@ export interface IUserState {
 }
 
 export interface IProductsMockState {
-  productsMock: ICategory[];
+  productsMock: ICategoryMock[];
 }
 
-// TODO: Implement getting data from API
-export interface ICategoryApi {
+// Interfaces for data from API
+export interface ICategory {
   id: string;
   name: string;
-  imageUrl: string;
+  source?: {
+    uri: string;
+  };
 }
 
-export interface ICategoriesApiState {
-  categoriesApi: ICategoryApi[];
+export interface ICategoriesState {
+  categories: ICategory[];
+}
+
+export interface IProductOptions {
+  id: string;
+  name: string;
+}
+
+export interface IProduct {
+  id: string;
+  name: string;
+  price: number | string;
+  currency?: string;
+  description?: string;
+  source: {
+    uri: string;
+  };
+  stockStatus?: string;
+  options?: IProductOptions[];
+}
+
+export interface IProductsState {
+  products: IProduct[];
+}
+
+export interface ICurrentProductState {
+  currentProduct: IProduct;
 }

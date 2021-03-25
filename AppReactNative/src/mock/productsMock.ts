@@ -1,7 +1,7 @@
-import { ICategory } from '../modules/interfaces';
+import { ICategoryMock } from '../modules/interfaces';
 
 /* eslint-disable global-require */
-export const products: ICategory[] = [
+export const productsMock: ICategoryMock[] = [
   {
     id: 'electronicsCategory',
     name: 'Electronics',

@@ -19,6 +19,8 @@ module.exports = {
     'react/prop-types': 0,
     'react/no-unused-prop-types': 0,
     'import/extensions': 0,
+    'react-hooks/exhaustive-deps': 0,
+    'no-console': 0,
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
@@ -29,7 +31,6 @@ module.exports = {
         variables: false,
       },
     ],
-    'no-console': 0,
     'prettier/prettier': ['error'],
     'react/jsx-filename-extension': [
       2,

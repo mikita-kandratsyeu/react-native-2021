@@ -1,39 +1,53 @@
 import React, { useState } from 'react';
-import { RefreshControl, SafeAreaView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 import { IProductListProps } from './interfaces';
 import { IProduct } from '../../../../interfaces';
 import { defaultStyles } from '../../../../../constans';
 import { Product } from '../../../Product';
+import { getProductsSelector } from '../../../../../selectors';
+import { getProducts, setProductsAction } from '../../../../../actions';
 import styles from './ProductListStyles';
 
 export const ProductList: React.FC<IProductListProps> = ({
-  currentCategory,
+  categoryActive,
+  isLoading,
 }) => {
-  const [productsData, setProductsData] = useState(currentCategory.items || []);
+  const dispatch = useDispatch();
+
+  const productsData = useSelector(getProductsSelector);
+
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
   const refreshingHandler = (): void => {
     setIsRefreshing(true);
 
-    setTimeout(() => {
+    getProducts(categoryActive.id).then(products => {
+      dispatch(setProductsAction(products));
+
       setIsRefreshing(false);
-      setProductsData([]);
-    }, 3000);
+    });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.productListHeader}>
-        <Text style={styles.productListTitle}>{currentCategory.name}</Text>
+        <Text style={styles.productListTitle}>{categoryActive.name}</Text>
         <TouchableHighlight
           style={styles.viewAllButton}
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => {}}>
+          onPress={() => null}>
           <Text style={styles.viewAllButtonText}>View all</Text>
         </TouchableHighlight>
       </View>
-      {productsData.length ? (
+      {!isLoading ? (
         <SafeAreaView style={styles.productListContainer}>
           <FlatList
             columnWrapperStyle={styles.productColumnWrapper}
@@ -53,7 +67,9 @@ export const ProductList: React.FC<IProductListProps> = ({
           />
         </SafeAreaView>
       ) : (
-        <Text>There are no products in this category</Text>
+        <View style={styles.spinner}>
+          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+        </View>
       )}
     </View>
   );

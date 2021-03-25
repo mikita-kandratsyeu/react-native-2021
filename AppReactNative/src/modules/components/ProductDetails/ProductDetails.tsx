@@ -3,10 +3,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Product, Separator, Header } from '..';
 import { ColorSelect, Description } from './components';
-import { StackParamsList } from '../../interfaces';
+import { StackParamsList } from '../../types';
 
 export const ProductDetails: React.FC = () => {
-  const route = useRoute<RouteProp<StackParamsList, 'productDetails'>>();
+  const route = useRoute<RouteProp<StackParamsList, 'productDetailsMock'>>();
 
   const { product } = route.params;
 

@@ -11,7 +11,7 @@ import {
   opacityButton,
 } from '../../../constans';
 import { loginIntoSystem, setProducts, setUserData } from '../../../actions';
-import { products } from '../../../mock';
+import { productsMock } from '../../../mock';
 import styles from './LoginStyles';
 
 export const Login: React.FC = () => {
@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
     loginIntoSystem(login, password).then(res => {
       if (res) {
         dispatch(setUserData(login, res.token));
-        dispatch(setProducts(products));
+        dispatch(setProducts(productsMock));
 
         Alert.alert(`Welcome to ${nameOfStore}`, `Your token: ${res.token}`);
       } else {

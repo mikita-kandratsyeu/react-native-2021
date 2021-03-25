@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 190,
-    height: 150,
+    height: 170,
     borderRadius: 5,
     borderWidth: 2,
     borderColor: defaultStyles.colors.grey,
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: defaultStyles.fontSize.small,
+    fontWeight: 'bold',
   },
 
   priceWrapper: {

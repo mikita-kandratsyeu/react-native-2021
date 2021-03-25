@@ -43,6 +43,11 @@ const styles = StyleSheet.create({
   productColumnWrapper: {
     justifyContent: 'space-between',
   },
+
+  spinner: {
+    flex: 1,
+    marginTop: defaultStyles.margin.medium,
+  },
 });
 
 export default styles;

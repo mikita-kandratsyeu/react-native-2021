@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import { IProductsMockState } from '../modules/interfaces';
+import { IProductsState } from '../modules/interfaces';
 
 export const getProductsSelector = createSelector(
-  (state: IProductsMockState) => state.productsMock,
+  (state: IProductsState) => state.products,
   products => products,
 );

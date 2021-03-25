@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { defaultStyles } from '../../../../../constans';
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: 90,
+    height: 90,
+  },
+
   container: {
     marginRight: defaultStyles.margin.small,
     marginLeft: defaultStyles.margin.small,

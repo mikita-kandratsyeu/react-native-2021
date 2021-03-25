@@ -1,5 +1,6 @@
 import { ICategory } from '../../../../../interfaces';
 
 export interface IProductListProps {
-  currentCategory: ICategory;
+  categoryActive: ICategory;
+  isLoading?: boolean;
 }

@@ -22,18 +22,16 @@ export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
             })
       }>
       <View style={style.imageWrapper}>
-        <Image source={product.images[0].source} style={style.image} />
+        <Image source={product.source} style={style.image} />
       </View>
       {isExtend && (
         <View style={extendStyles.inStockWrapper}>
-          <Text style={extendStyles.inStock}>In Stock</Text>
+          <Text style={extendStyles.inStock}>{product.stockStatus}</Text>
         </View>
       )}
       <Text style={style.title}>{product.name}</Text>
       <View style={style.priceWrapper}>
-        <Text style={style.price}>{product.price}</Text>
-        <Text style={style.oldPrice}>{product.oldPrice}</Text>
-        <Text style={style.discount}>{`${product.discount}% Off`}</Text>
+        <Text style={style.price}>{`$${product.price}`}</Text>
       </View>
     </TouchableOpacity>
   );
