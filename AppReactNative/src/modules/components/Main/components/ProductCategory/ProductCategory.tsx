@@ -10,6 +10,7 @@ import styles from './ProductCategoryStyles';
 export const ProductCategory: React.FC<IProductCategoryProps> = ({
   productCategory,
   setActiveCategory,
+  isActive,
 }) => {
   const categoryIcon = productCategory.source || productsMock[0].source;
 
@@ -24,7 +25,11 @@ export const ProductCategory: React.FC<IProductCategoryProps> = ({
         })
       }>
       <View style={styles.container}>
-        <View style={styles.imageWrapper}>
+        <View
+          style={[
+            styles.imageWrapper,
+            isActive && { borderColor: defaultStyles.colors.green },
+          ]}>
           <Image source={categoryIcon} style={styles.image} />
         </View>
         <Text style={styles.title}>

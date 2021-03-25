@@ -6,7 +6,7 @@ import { removeUnnecessarySymbols } from '../services';
 
 export const setProductsAction = createAction('SET_PRODUCTS_ACTION');
 
-export const getProducts = (categoryId: string, rows: number = 4) =>
+export const getProducts = (categoryId: string, rows: number = 6) =>
   axios
     .get(
       `${apiHost}index.php?rt=a/product/filter&category_id=${categoryId}&rows=${rows}`,
@@ -22,6 +22,7 @@ export const getProducts = (categoryId: string, rows: number = 4) =>
         source: {
           uri: `http:${product.cell.thumb}`,
         },
+        records: data.records,
       }));
 
       return Promise.resolve(products);

@@ -70,6 +70,7 @@ export interface IProduct {
   };
   description?: string;
   stockStatus?: string;
+  records?: string;
 }
 
 export interface IProductsState {

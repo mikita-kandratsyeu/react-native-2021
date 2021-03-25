@@ -68,6 +68,7 @@ export const Main: React.FC = () => {
         key={category.id}
         productCategory={category}
         setActiveCategory={setActiveCategory}
+        isActive={activeCategory.id === category.id}
       />
     ));
 

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: 60,
     height: 60,
-    borderWidth: 2,
+    borderWidth: 4,
     borderRadius: 60,
     borderColor: defaultStyles.colors.blue,
     overflow: 'hidden',

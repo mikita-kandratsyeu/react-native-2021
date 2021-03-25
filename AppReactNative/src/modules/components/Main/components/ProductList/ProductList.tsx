@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   RefreshControl,
@@ -25,9 +25,12 @@ export const ProductList: React.FC<IProductListProps> = ({
   const productsData = useSelector(getProductsSelector);
 
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
+  const [currentRow, setCurrentRow] = useState<number>(4);
 
   const refreshingHandler = (): void => {
     setIsRefreshing(true);
+    setCurrentRow(4);
 
     getProducts(categoryActive.id).then(products => {
       dispatch(setProductsAction(products));
@@ -35,6 +38,30 @@ export const ProductList: React.FC<IProductListProps> = ({
       setIsRefreshing(false);
     });
   };
+
+  const loadMoreHandler = (): void => {
+    if (currentRow <= Number(productsData[0].records)) {
+      setIsLoadingMore(true);
+      setCurrentRow(currentRow + 2);
+
+      getProducts(categoryActive.id, currentRow).then(products => {
+        dispatch(setProductsAction(products));
+
+        setIsLoadingMore(false);
+      });
+    }
+  };
+
+  const renderFooter = () =>
+    isLoadingMore ? (
+      <View style={spinner}>
+        <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+      </View>
+    ) : null;
+
+  useEffect(() => {
+    setCurrentRow(4);
+  }, [categoryActive.id]);
 
   return (
     <View style={styles.container}>
@@ -64,6 +91,9 @@ export const ProductList: React.FC<IProductListProps> = ({
                 onRefresh={refreshingHandler}
               />
             }
+            onEndReached={loadMoreHandler}
+            onEndReachedThreshold={0}
+            ListFooterComponent={renderFooter()}
           />
         </SafeAreaView>
       ) : (
