@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  Alert,
-  Button,
-  View,
-} from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, Alert } from 'react-native';
+import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 import {
   defaultStyles,
   backgroundGradientColors,
   nameOfStore,
+  opacityButton,
+  StackRouters,
 } from '../../../constans';
-import { loginIntoSystem, setUserData } from '../../../actions';
+import { loginIntoSystem, setProducts, setUserData } from '../../../actions';
+import { productsMock } from '../../../mock';
 import styles from './LoginStyles';
 
 export const Login: React.FC = () => {
+  const navigator = useNavigation();
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState<string>('');
@@ -39,8 +37,9 @@ export const Login: React.FC = () => {
     loginIntoSystem(login, password).then(res => {
       if (res) {
         dispatch(setUserData(login, res.token));
+        dispatch(setProducts(productsMock));
 
-        Alert.alert('Success', `Your token: ${res.token}`);
+        Alert.alert(`Welcome to ${nameOfStore}`, `Your token: ${res.token}`);
       } else {
         Alert.alert('Error', 'Something went wrong! Try again!');
       }
@@ -74,19 +73,18 @@ export const Login: React.FC = () => {
           secureTextEntry
           textContentType="password"
         />
-        <TouchableHighlight style={styles.restoreButton}>
-          <Text style={styles.link}>Forgot password?</Text>
-        </TouchableHighlight>
-        <View style={styles.loginButton}>
-          <Button
-            title="Login"
-            onPress={submitHandler}
-            disabled={isButtonDisabled}
-          />
-        </View>
-        <TouchableHighlight style={styles.registrationButton}>
+        <TouchableHighlight
+          style={styles.registrationButton}
+          underlayColor={defaultStyles.colors.pressLink}
+          onPress={() => navigator.navigate(StackRouters.registration)}>
           <Text style={styles.link}>New here? Registration</Text>
         </TouchableHighlight>
+        <RectButton
+          style={[styles.loginButton, isButtonDisabled && opacityButton]}
+          enabled={!isButtonDisabled}
+          onPress={submitHandler}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </RectButton>
       </KeyboardAvoidingView>
     </LinearGradient>
   );

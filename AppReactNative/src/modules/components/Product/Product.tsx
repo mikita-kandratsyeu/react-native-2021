@@ -1,27 +1,46 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import { IProductProps } from './interfaces';
+import { getTruncatedString } from '../../../services';
+import { maxLengthTitleProductList, StackRouters } from '../../../constans';
 import styles, { extendStyles } from './ProductStyles';
 
 export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
   const style = isExtend ? extendStyles : styles;
 
+  const navigator = useNavigation();
+
   return (
-    <View style={style.container}>
+    <TouchableOpacity
+      disabled={isExtend}
+      style={style.container}
+      onPress={() =>
+        isExtend
+          ? null
+          : navigator.navigate(StackRouters.productDetails, {
+              productId: product.id,
+            })
+      }>
       <View style={style.imageWrapper}>
-        <Image source={product.images[0].source} style={style.image} />
+        <Image source={product.source} style={style.image} />
       </View>
       {isExtend && (
         <View style={extendStyles.inStockWrapper}>
-          <Text style={extendStyles.inStock}>In Stock</Text>
+          <Text style={extendStyles.inStock}>
+            {product.stockStatus || 'In Stock'}
+          </Text>
         </View>
       )}
-      <Text style={style.title}>{product.name}</Text>
+      <Text style={style.title}>
+        {isExtend
+          ? product.name
+          : getTruncatedString(product.name, maxLengthTitleProductList)}
+      </Text>
       <View style={style.priceWrapper}>
-        <Text style={style.price}>{product.price}</Text>
-        <Text style={style.oldPrice}>{product.oldPrice}</Text>
-        <Text style={style.discount}>{`${product.discount}% Off`}</Text>
+        <Text style={style.price}>{`$${product.price}`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };

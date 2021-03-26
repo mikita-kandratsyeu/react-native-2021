@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   },
 
   headerTitle: {
+    fontWeight: 'bold',
     color: defaultStyles.colors.blue,
     fontSize: defaultStyles.fontSize.medium,
   },

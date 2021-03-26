@@ -1,5 +1,9 @@
 import React from 'react';
-import { Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { IDescriptionProps } from './interfaces';
@@ -13,9 +17,8 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
     <View style={styles.controlsContainer}>
       <View style={styles.wishListWrapper}>
         <TouchableHighlight
-          underlayColor={defaultStyles.colors.blue}
-          activeOpacity={0.5}
-          onPress={() => {}}>
+          underlayColor={defaultStyles.colors.pressLink}
+          onPress={() => null}>
           <View style={styles.wishList}>
             <FontAwesomeIcon
               style={styles.wishListIcon}
@@ -28,7 +31,7 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
         </TouchableHighlight>
       </View>
       <View style={styles.addToCartWrapper}>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => null}>
           <View style={styles.addToCart}>
             <Text style={styles.addToCartText}>Add to Cart</Text>
           </View>

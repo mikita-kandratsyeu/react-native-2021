@@ -7,32 +7,33 @@ export interface IUser {
   token: string;
 }
 
-export interface IProductImage {
+// Interfaces for mock data
+export interface IProductMockImage {
   id: string;
   source: any;
 }
 
-export interface IProductColor {
+export interface IProductMockColor {
   id: string;
   name: string;
 }
 
-export interface IProduct {
+export interface IProductMock {
   id: string;
   name: string;
   price: number;
   oldPrice?: number;
   discount?: number;
-  images: IProductImage[];
-  colors: IProductColor[];
+  images: IProductMockImage[];
+  colors: IProductMockColor[];
   description: string;
 }
 
-export interface ICategory {
+export interface ICategoryMock {
   id: string;
   name: string;
   source: any;
-  items?: IProduct[];
+  items?: IProductMock[];
 }
 
 export interface ICounterState {
@@ -43,6 +44,39 @@ export interface IUserState {
   user: IUser;
 }
 
+export interface IProductsMockState {
+  productsMock: ICategoryMock[];
+}
+
+// Interfaces for data from API
+export interface ICategory {
+  id: string;
+  name: string;
+  source?: {
+    uri: string;
+  };
+}
+
+export interface ICategoriesState {
+  categories: ICategory[];
+}
+
+export interface IProduct {
+  id: string;
+  name: string;
+  price: number | string;
+  source: {
+    uri: string;
+  };
+  description?: string;
+  stockStatus?: string;
+  records?: string;
+}
+
 export interface IProductsState {
-  products: ICategory[];
+  products: IProduct[];
+}
+
+export interface ICurrentProductState {
+  currentProduct: IProduct;
 }

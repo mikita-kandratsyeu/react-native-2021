@@ -3,7 +3,7 @@ import { defaultStyles } from '../../../constans';
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 30,
+    minHeight: 40,
     padding: defaultStyles.padding.large,
     backgroundColor: defaultStyles.colors.blue,
     flexDirection: 'row',

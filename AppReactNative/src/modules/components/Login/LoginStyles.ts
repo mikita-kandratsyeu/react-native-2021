@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
 
   title: {
     ...margins,
-    marginTop: 150,
+    marginTop: 100,
+    marginBottom: 100,
     backgroundColor: defaultStyles.colors.transparent,
     fontSize: defaultStyles.fontSize.large,
     textAlign: 'center',
@@ -26,12 +27,6 @@ const styles = StyleSheet.create({
     fontSize: defaultStyles.fontSize.medium,
   },
 
-  restoreButton: {
-    ...margins,
-    marginTop: defaultStyles.margin.medium,
-    alignSelf: 'center',
-  },
-
   registrationButton: {
     ...margins,
     alignSelf: 'center',
@@ -39,8 +34,18 @@ const styles = StyleSheet.create({
 
   loginButton: {
     ...margins,
+    marginTop: 50,
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  loginButtonText: {
+    color: defaultStyles.colors.white,
+    fontWeight: 'bold',
+    fontSize: defaultStyles.fontSize.small,
   },
 
   link: {

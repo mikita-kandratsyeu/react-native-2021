@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { defaultStyles } from '../../../../../constans';
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: 100,
+    height: 100,
+  },
+
   container: {
     marginRight: defaultStyles.margin.small,
     marginLeft: defaultStyles.margin.small,
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: 60,
     height: 60,
-    borderWidth: 2,
+    borderWidth: 4,
     borderRadius: 60,
     borderColor: defaultStyles.colors.blue,
     overflow: 'hidden',

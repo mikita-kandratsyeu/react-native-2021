@@ -1,27 +1,30 @@
 import React from 'react';
-import { Text, TouchableHighlight, View } from 'react-native';
+import { View } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faArrowLeft,
   faBars,
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IHeaderProps } from './interfaces';
 import { Search, IconSearch } from '../UI';
-import { defaultStyles } from '../../../constans';
+import { defaultStyles, StackRouters } from '../../../constans';
 import styles from './HeaderStyles';
 
 export const Header: React.FC<IHeaderProps> = ({
-  title = '',
   isToggleButtonVisible,
   isSearchVisible,
 }) => {
+  const navigator = useNavigation();
+
   const renderLeftHeaderControl = (): React.ReactNode =>
     isToggleButtonVisible ? (
       <TouchableHighlight
         style={styles.iconButton}
-        underlayColor={defaultStyles.colors.grey}
-        onPress={() => {}}>
+        underlayColor={defaultStyles.colors.pressLink}
+        onPress={() => navigator.dispatch(DrawerActions.toggleDrawer())}>
         <FontAwesomeIcon
           icon={faBars}
           size={defaultStyles.fontSize.large}
@@ -31,8 +34,8 @@ export const Header: React.FC<IHeaderProps> = ({
     ) : (
       <TouchableHighlight
         style={styles.iconButton}
-        underlayColor={defaultStyles.colors.grey}
-        onPress={() => {}}>
+        underlayColor={defaultStyles.colors.pressLink}
+        onPress={() => navigator.goBack()}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size={defaultStyles.fontSize.large}
@@ -45,12 +48,11 @@ export const Header: React.FC<IHeaderProps> = ({
     <View>
       <View style={styles.container}>
         {renderLeftHeaderControl()}
-        <Text style={styles.title}>{title}</Text>
         <View style={styles.rightHeaderControl}>
           <TouchableHighlight
             style={styles.iconButton}
-            underlayColor={defaultStyles.colors.transparent}
-            onPress={() => {}}>
+            underlayColor={defaultStyles.colors.pressLink}
+            onPress={() => navigator.navigate(StackRouters.mockComponent)}>
             <IconSearch
               isVisible={!isSearchVisible}
               color={defaultStyles.colors.white}
@@ -58,8 +60,8 @@ export const Header: React.FC<IHeaderProps> = ({
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.iconButton}
-            underlayColor={defaultStyles.colors.grey}
-            onPress={() => {}}>
+            underlayColor={defaultStyles.colors.pressLink}
+            onPress={() => navigator.navigate(StackRouters.mockComponent)}>
             <FontAwesomeIcon
               icon={faShoppingCart}
               size={defaultStyles.fontSize.large}

@@ -1,5 +1,5 @@
-import { IProductColor } from '../../../../../interfaces';
+import { IProductMockColor } from '../../../../../interfaces';
 
 export interface IColorSelectProps {
-  colors: IProductColor[];
+  colors: IProductMockColor[];
 }

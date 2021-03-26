@@ -1,36 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { ScrollView } from 'react-native';
-import { getProductsSelector } from '../../../selectors';
-import { setProducts } from '../../../actions';
-import { products } from '../../../mock';
-import { Header } from '../Header';
-import { Separator } from '../UI';
-import { Product } from '../Product';
-import { ColorSelect, Description } from './components';
+import { ActivityIndicator, View } from 'react-native';
+import { Product, Separator, Header } from '..';
+import { Description } from './components';
+import { StackParamsList } from '../../types';
+import { getCurrentProduct, setCurrentProductAction } from '../../../actions';
+import { defaultStyles, spinner, StackRouters } from '../../../constans';
+import { getCurrentProductSelector } from '../../../selectors';
 
 export const ProductDetails: React.FC = () => {
-  // TODO: In the future task "product" will pass through props.
   const dispatch = useDispatch();
+  const route = useRoute<
+    RouteProp<StackParamsList, StackRouters.productDetails>
+  >();
 
-  const productsData = useSelector(getProductsSelector);
+  const currentProductData = useSelector(getCurrentProductSelector);
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { productId } = route.params;
 
   useEffect(() => {
-    dispatch(setProducts(products));
-  }, [dispatch]);
+    setIsLoading(true);
+
+    getCurrentProduct(productId).then(product => {
+      dispatch(setCurrentProductAction(product));
+
+      setIsLoading(false);
+    });
+  }, []);
 
   return (
-    <ScrollView>
-      {productsData.length && productsData[0].items ? (
+    <ScrollView style={{ backgroundColor: defaultStyles.colors.white }}>
+      <Header />
+      {isLoading ? (
+        <View style={spinner}>
+          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+        </View>
+      ) : (
         <>
-          <Header />
-          <Product product={productsData[0].items[0]} isExtend />
+          <Product product={currentProductData} isExtend />
           <Separator />
-          <ColorSelect colors={productsData[0].items[0].colors} />
-          <Separator />
-          <Description description={productsData[0].items[0].description} />
+          <Description
+            description={
+              currentProductData.description || 'Description is empty'
+            }
+          />
         </>
-      ) : null}
+      )}
     </ScrollView>
   );
 };

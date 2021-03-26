@@ -1,9 +1,34 @@
+import axios from 'axios';
 import { createAction } from 'redux-actions';
-import { Dispatch } from 'redux';
-import { ICategory } from '../modules/interfaces';
+import { apiHost } from '../constans';
+import { IProduct } from '../modules/interfaces';
+import { removeUnnecessarySymbols } from '../services';
 
 export const setProductsAction = createAction('SET_PRODUCTS_ACTION');
 
-export const setProducts = (products: ICategory[]) => (dispatch: Dispatch) => {
-  dispatch(setProductsAction(products));
-};
+export const getProducts = (categoryId: string, rows: number = 6) =>
+  axios
+    .get(
+      `${apiHost}index.php?rt=a/product/filter&category_id=${categoryId}&rows=${rows}`,
+    )
+    .then(res => {
+      const { data } = res;
+
+      const products: IProduct[] = data.rows.map((product: any) => ({
+        id: product.id,
+        name: removeUnnecessarySymbols(product.cell.name),
+        price: product.cell.price.toFixed(2),
+        currency: product.cell.currency_code,
+        source: {
+          uri: `http:${product.cell.thumb}`,
+        },
+        records: data.records,
+      }));
+
+      return Promise.resolve(products);
+    })
+    .catch(err => {
+      console.error(err);
+
+      return Promise.resolve([]);
+    });
