@@ -14,7 +14,7 @@ import { defaultStyles, spinner } from '../../../../../constans';
 import { Product } from '../../../Product';
 import { getProductsSelector } from '../../../../../selectors';
 import { getProducts, setProductsAction } from '../../../../../actions';
-import styles from './ProductListStyles';
+import styles, { marginLeftCalc } from './ProductListStyles';
 
 export const ProductList: React.FC<IProductListProps> = ({
   categoryActive,
@@ -26,11 +26,11 @@ export const ProductList: React.FC<IProductListProps> = ({
 
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
-  const [currentRow, setCurrentRow] = useState<number>(4);
+  const [currentRow, setCurrentRow] = useState<number>(6);
 
   const refreshingHandler = (): void => {
     setIsRefreshing(true);
-    setCurrentRow(4);
+    setCurrentRow(6);
 
     getProducts(categoryActive.id).then(products => {
       dispatch(setProductsAction(products));
@@ -42,7 +42,7 @@ export const ProductList: React.FC<IProductListProps> = ({
   const loadMoreHandler = (): void => {
     if (currentRow <= Number(productsData[0].records)) {
       setIsLoadingMore(true);
-      setCurrentRow(currentRow + 2);
+      setCurrentRow(row => row + 2);
 
       getProducts(categoryActive.id, currentRow).then(products => {
         dispatch(setProductsAction(products));
@@ -52,15 +52,8 @@ export const ProductList: React.FC<IProductListProps> = ({
     }
   };
 
-  const renderFooter = () =>
-    isLoadingMore ? (
-      <View style={spinner}>
-        <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
-      </View>
-    ) : null;
-
   useEffect(() => {
-    setCurrentRow(4);
+    setCurrentRow(6);
   }, [categoryActive.id]);
 
   return (
@@ -74,15 +67,26 @@ export const ProductList: React.FC<IProductListProps> = ({
           <Text style={styles.viewAllButtonText}>View all</Text>
         </TouchableHighlight>
       </View>
-      {!isLoading ? (
+      {isLoading ? (
+        <View style={spinner}>
+          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+        </View>
+      ) : (
         <SafeAreaView style={styles.productListContainer}>
           <FlatList
-            columnWrapperStyle={styles.productColumnWrapper}
             keyExtractor={(item: IProduct) => item.id}
             data={productsData}
             numColumns={2}
-            renderItem={({ item }: { item: IProduct }) => (
-              <Product product={item} />
+            renderItem={({
+              item,
+              index,
+            }: {
+              item: IProduct;
+              index: number;
+            }) => (
+              <View style={[styles.productContainer, marginLeftCalc(index)]}>
+                <Product product={item} />
+              </View>
             )}
             refreshControl={
               <RefreshControl
@@ -93,13 +97,18 @@ export const ProductList: React.FC<IProductListProps> = ({
             }
             onEndReached={loadMoreHandler}
             onEndReachedThreshold={0}
-            ListFooterComponent={renderFooter()}
+            ListFooterComponent={
+              isLoadingMore ? (
+                <View style={spinner}>
+                  <ActivityIndicator
+                    color={defaultStyles.colors.blue}
+                    size="large"
+                  />
+                </View>
+              ) : null
+            }
           />
         </SafeAreaView>
-      ) : (
-        <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
-        </View>
       )}
     </View>
   );

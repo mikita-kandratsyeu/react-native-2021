@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 import { setCurrentProductAction } from '../actions';
 import { IProduct } from '../modules/interfaces';
 
-const initialState: IProduct = {
+export const initialStateCurrentProduct: IProduct = {
   id: '',
   name: '',
   description: '',
@@ -16,5 +16,5 @@ export const setCurrentProductReducer = handleActions(
   {
     [`${setCurrentProductAction}`]: (state, { payload }) => payload,
   },
-  initialState,
+  initialStateCurrentProduct,
 );

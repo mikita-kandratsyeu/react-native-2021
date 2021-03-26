@@ -27,4 +27,8 @@ export const getProducts = (categoryId: string, rows: number = 6) =>
 
       return Promise.resolve(products);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+
+      return Promise.resolve([]);
+    });

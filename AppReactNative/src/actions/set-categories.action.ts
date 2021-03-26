@@ -24,4 +24,8 @@ export const getCategories = () =>
 
       return Promise.resolve(categories);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+
+      return Promise.resolve([]);
+    });

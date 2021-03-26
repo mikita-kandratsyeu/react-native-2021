@@ -19,3 +19,19 @@ export enum DrawerRouters {
   cart = 'Cart',
   orders = 'Orders',
 }
+
+export const unnecessarySymbols: string[] = [
+  '<p>',
+  '</p>',
+  '&lt;p&gt;',
+  '&lt;/p&gt;',
+  '&amp;',
+  '$',
+  '<li>',
+  '</li>',
+  '&nbsp;',
+  '<br/>',
+  '<br>',
+  '<ul>',
+  '</ul>',
+];

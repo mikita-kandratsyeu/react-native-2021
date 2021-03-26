@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions';
 import { apiHost } from '../constans';
 import { IProduct } from '../modules/interfaces';
 import { removeUnnecessarySymbols } from '../services';
+import { initialStateCurrentProduct } from '../reducers';
 
 export const setCurrentProductAction = createAction(
   'SET_CURRENT_PRODUCT_ACTION',
@@ -27,4 +28,8 @@ export const getCurrentProduct = (productId: string) =>
 
       return Promise.resolve(product);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+
+      return Promise.resolve(initialStateCurrentProduct);
+    });

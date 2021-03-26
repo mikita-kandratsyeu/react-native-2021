@@ -35,7 +35,11 @@ export const ProductDetails: React.FC = () => {
   return (
     <ScrollView style={{ backgroundColor: defaultStyles.colors.white }}>
       <Header />
-      {!isLoading ? (
+      {isLoading ? (
+        <View style={spinner}>
+          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+        </View>
+      ) : (
         <>
           <Product product={currentProductData} isExtend />
           <Separator />
@@ -45,10 +49,6 @@ export const ProductDetails: React.FC = () => {
             }
           />
         </>
-      ) : (
-        <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
-        </View>
       )}
     </ScrollView>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
@@ -32,12 +32,6 @@ const drawerRoutes = () => (
 export const Application: React.FC = () => {
   const user = useSelector(getUserDataSelector);
 
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsLogin(!!user.token);
-  }, [user, user.token]);
-
   // TODO: Feature #0: Implement a new Header with using ReactNavigate
   return (
     <NavigationContainer>
@@ -45,7 +39,7 @@ export const Application: React.FC = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        {isLogin ? (
+        {user.token ? (
           <>
             <Stack.Screen name={StackRouters.main} component={drawerRoutes} />
             <Stack.Screen

@@ -3,16 +3,10 @@ import { defaultStyles } from '../../../constans';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginBottom: defaultStyles.margin.small,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 190,
-    height: 180,
     borderRadius: 5,
-    borderWidth: 2,
-    borderColor: defaultStyles.colors.grey,
-    backgroundColor: defaultStyles.colors.white,
   },
 
   imageWrapper: {

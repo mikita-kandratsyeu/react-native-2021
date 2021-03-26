@@ -51,9 +51,9 @@ export const Main: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoadingProductList(true);
-
     if (activeCategory.id) {
+      setIsLoadingProductList(true);
+
       getProducts(activeCategory.id).then(products => {
         dispatch(setProductsAction(products));
 
@@ -62,25 +62,26 @@ export const Main: React.FC = () => {
     }
   }, [activeCategory.id]);
 
-  const renderProductCategory = (categories: ICategory[]): React.ReactNode =>
-    categories.map(category => (
-      <ProductCategory
-        key={category.id}
-        productCategory={category}
-        setActiveCategory={setActiveCategory}
-        isActive={activeCategory.id === category.id}
-      />
-    ));
-
   return (
     <View style={styles.container}>
       <Header isSearchVisible isToggleButtonVisible />
-      {!isLoading ? (
+      {isLoading ? (
+        <View style={spinner}>
+          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+        </View>
+      ) : (
         <>
           <View style={styles.productCategoryScroll}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.productCategory}>
-                {renderProductCategory(categoriesData)}
+                {categoriesData.map(category => (
+                  <ProductCategory
+                    key={category.id}
+                    productCategory={category}
+                    setActiveCategory={setActiveCategory}
+                    isActive={activeCategory.id === category.id}
+                  />
+                ))}
               </View>
             </ScrollView>
           </View>
@@ -90,10 +91,6 @@ export const Main: React.FC = () => {
             isLoading={isLoadingProductList}
           />
         </>
-      ) : (
-        <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
-        </View>
       )}
     </View>
   );

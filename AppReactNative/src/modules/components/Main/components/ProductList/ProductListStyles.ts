@@ -43,6 +43,19 @@ const styles = StyleSheet.create({
   productColumnWrapper: {
     justifyContent: 'space-between',
   },
+
+  productContainer: {
+    flex: 1,
+    height: 180,
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: defaultStyles.colors.blue,
+    marginBottom: 5,
+  },
+});
+
+export const marginLeftCalc = (index: number) => ({
+  marginLeft: index % 2 ? 3 : 5,
 });
 
 export default styles;

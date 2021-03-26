@@ -1,20 +1,6 @@
-export const removeUnnecessarySymbols = (str: string): string => {
-  const unnecessarySymbols: string[] = [
-    '<p>',
-    '</p>',
-    '&lt;p&gt;',
-    '&lt;/p&gt;',
-    '&amp;',
-    '$',
-    '<li>',
-    '</li>',
-    '&nbsp;',
-    '<br/>',
-    '<br>',
-    '<ul>',
-    '</ul>',
-  ];
+import { unnecessarySymbols } from '../constans';
 
+export const removeUnnecessarySymbols = (str: string): string => {
   let copyString: string = str;
 
   unnecessarySymbols.forEach(item => {
