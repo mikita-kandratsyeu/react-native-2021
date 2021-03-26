@@ -13,6 +13,10 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-native', '@typescript-eslint', 'prettier'],
   rules: {
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     'no-debugger': 'off',
     'react/jsx-props-no-spreading': 0,
     'import/no-unresolved': 0,
@@ -22,6 +26,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 0,
     'no-console': 0,
     'import/prefer-default-export': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': ['error'],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',

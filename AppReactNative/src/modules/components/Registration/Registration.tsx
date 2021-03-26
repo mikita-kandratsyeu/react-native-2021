@@ -69,7 +69,7 @@ export const Registration: React.FC = () => {
           value={email}
           onChangeText={changeEmailHandler}
           style={styles.input}
-          placeholder="Full Name"
+          placeholder="Email"
           placeholderTextColor={defaultStyles.colors.grey}
           autoCompleteType="email"
           keyboardType="email-address"

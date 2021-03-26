@@ -38,7 +38,7 @@ export const Application: React.FC = () => {
     setIsLogin(!!user.token);
   }, [user, user.token]);
 
-  // TODO: Implement a new Header with using ReactNavigate
+  // TODO: Feature #0: Implement a new Header with using ReactNavigate
   return (
     <NavigationContainer>
       <Stack.Navigator

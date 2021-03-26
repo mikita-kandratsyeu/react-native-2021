@@ -7,12 +7,14 @@ import { Product, Separator, Header } from '..';
 import { Description } from './components';
 import { StackParamsList } from '../../types';
 import { getCurrentProduct, setCurrentProductAction } from '../../../actions';
-import { defaultStyles, spinner } from '../../../constans';
+import { defaultStyles, spinner, StackRouters } from '../../../constans';
 import { getCurrentProductSelector } from '../../../selectors';
 
 export const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const route = useRoute<RouteProp<StackParamsList, 'productDetails'>>();
+  const route = useRoute<
+    RouteProp<StackParamsList, StackRouters.productDetails>
+  >();
 
   const currentProductData = useSelector(getCurrentProductSelector);
 
