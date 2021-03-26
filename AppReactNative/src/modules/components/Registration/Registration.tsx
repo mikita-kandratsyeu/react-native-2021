@@ -9,6 +9,7 @@ import {
   backgroundGradientColors,
   defaultStyles,
   nameOfStore,
+  StackRouters,
 } from '../../../constans';
 import styles from './RegistrationStyles';
 
@@ -100,7 +101,7 @@ export const Registration: React.FC = () => {
         <TouchableHighlight
           style={styles.loginButton}
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => navigator.navigate('Login')}>
+          onPress={() => navigator.navigate(StackRouters.login)}>
           <Text style={styles.link}>Already have an account? Login</Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>

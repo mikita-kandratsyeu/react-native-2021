@@ -9,13 +9,14 @@ import {
   backgroundGradientColors,
   nameOfStore,
   opacityButton,
+  StackRouters,
 } from '../../../constans';
 import { loginIntoSystem, setProducts, setUserData } from '../../../actions';
 import { productsMock } from '../../../mock';
 import styles from './LoginStyles';
 
 export const Login: React.FC = () => {
-  const navigation = useNavigation();
+  const navigator = useNavigation();
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState<string>('');
@@ -75,7 +76,7 @@ export const Login: React.FC = () => {
         <TouchableHighlight
           style={styles.registrationButton}
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => navigation.navigate('Registration')}>
+          onPress={() => navigator.navigate(StackRouters.registration)}>
           <Text style={styles.link}>New here? Registration</Text>
         </TouchableHighlight>
         <RectButton

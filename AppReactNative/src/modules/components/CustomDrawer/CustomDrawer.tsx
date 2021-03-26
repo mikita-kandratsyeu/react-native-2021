@@ -19,7 +19,7 @@ import {
 import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
-import { defaultStyles, nameOfStore } from '../../../constans';
+import { defaultStyles, DrawerRouters, nameOfStore } from '../../../constans';
 import styles from './CustomDrawerStyles';
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
@@ -45,7 +45,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => navigator.navigate('Profile')}
+          onPress={() => navigator.navigate(DrawerRouters.profile)}
         />
         <DrawerItem
           label="My Wish List"
@@ -59,7 +59,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => navigator.navigate('WishList')}
+          onPress={() => navigator.navigate(DrawerRouters.wishList)}
         />
         <DrawerItem
           label="My Cart"
@@ -73,7 +73,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => navigator.navigate('Cart')}
+          onPress={() => navigator.navigate(DrawerRouters.cart)}
         />
         <DrawerItem
           label="My Orders"
@@ -87,7 +87,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => navigator.navigate('Orders')}
+          onPress={() => navigator.navigate(DrawerRouters.orders)}
         />
       </View>
       <View style={styles.group}>

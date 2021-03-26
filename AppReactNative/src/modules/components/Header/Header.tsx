@@ -10,7 +10,7 @@ import {
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IHeaderProps } from './interfaces';
 import { Search, IconSearch } from '../UI';
-import { defaultStyles } from '../../../constans';
+import { defaultStyles, StackRouters } from '../../../constans';
 import styles from './HeaderStyles';
 
 export const Header: React.FC<IHeaderProps> = ({
@@ -52,7 +52,7 @@ export const Header: React.FC<IHeaderProps> = ({
           <TouchableHighlight
             style={styles.iconButton}
             underlayColor={defaultStyles.colors.pressLink}
-            onPress={() => navigator.navigate('MockComponent')}>
+            onPress={() => navigator.navigate(StackRouters.mockComponent)}>
             <IconSearch
               isVisible={!isSearchVisible}
               color={defaultStyles.colors.white}
@@ -61,7 +61,7 @@ export const Header: React.FC<IHeaderProps> = ({
           <TouchableHighlight
             style={styles.iconButton}
             underlayColor={defaultStyles.colors.pressLink}
-            onPress={() => navigator.navigate('MockComponent')}>
+            onPress={() => navigator.navigate(StackRouters.mockComponent)}>
             <FontAwesomeIcon
               icon={faShoppingCart}
               size={defaultStyles.fontSize.large}

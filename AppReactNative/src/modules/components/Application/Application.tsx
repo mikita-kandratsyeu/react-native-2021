@@ -12,19 +12,20 @@ import {
   CustomDrawer,
 } from '..';
 import { getUserDataSelector } from '../../../selectors';
+import { StackRouters, DrawerRouters } from '../../../constans';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const drawerRoutes = () => (
   <Drawer.Navigator
-    initialRouteName="Main"
+    initialRouteName={StackRouters.main}
     drawerContent={props => <CustomDrawer {...props} />}>
-    <Drawer.Screen name="Main" component={Main} />
-    <Drawer.Screen name="Profile" component={MockComponent} />
-    <Drawer.Screen name="WishList" component={MockComponent} />
-    <Drawer.Screen name="Cart" component={MockComponent} />
-    <Drawer.Screen name="Orders" component={MockComponent} />
+    <Drawer.Screen name={StackRouters.main} component={Main} />
+    <Drawer.Screen name={DrawerRouters.profile} component={MockComponent} />
+    <Drawer.Screen name={DrawerRouters.wishList} component={MockComponent} />
+    <Drawer.Screen name={DrawerRouters.cart} component={MockComponent} />
+    <Drawer.Screen name={DrawerRouters.orders} component={MockComponent} />
   </Drawer.Navigator>
 );
 
@@ -37,6 +38,7 @@ export const Application: React.FC = () => {
     setIsLogin(!!user.token);
   }, [user, user.token]);
 
+  // TODO: Implement a new Header with using ReactNavigate
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -45,14 +47,23 @@ export const Application: React.FC = () => {
         }}>
         {isLogin ? (
           <>
-            <Stack.Screen name="Main" component={drawerRoutes} />
-            <Stack.Screen name="ProductDetails" component={ProductDetails} />
-            <Stack.Screen name="MockComponent" component={MockComponent} />
+            <Stack.Screen name={StackRouters.main} component={drawerRoutes} />
+            <Stack.Screen
+              name={StackRouters.productDetails}
+              component={ProductDetails}
+            />
+            <Stack.Screen
+              name={StackRouters.mockComponent}
+              component={MockComponent}
+            />
           </>
         ) : (
           <>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Registration" component={Registration} />
+            <Stack.Screen name={StackRouters.login} component={Login} />
+            <Stack.Screen
+              name={StackRouters.registration}
+              component={Registration}
+            />
           </>
         )}
       </Stack.Navigator>

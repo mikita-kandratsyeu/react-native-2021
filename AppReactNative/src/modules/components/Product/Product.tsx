@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { IProductProps } from './interfaces';
 import { getTruncatedString } from '../../../services';
-import { maxLengthTitleProductList } from '../../../constans';
+import { maxLengthTitleProductList, StackRouters } from '../../../constans';
 import styles, { extendStyles } from './ProductStyles';
 
 export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
@@ -19,7 +19,7 @@ export const Product: React.FC<IProductProps> = ({ product, isExtend }) => {
       onPress={() =>
         isExtend
           ? null
-          : navigator.navigate('ProductDetails', {
+          : navigator.navigate(StackRouters.productDetails, {
               productId: product.id,
             })
       }>
