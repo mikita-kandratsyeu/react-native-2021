@@ -13,8 +13,6 @@ export const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({
       translateY.setValue(LoadingIndicatorAnimation.startTranslateY);
     });
 
-    console.info(dotsTranslateY);
-
     Animated.stagger(LoadingIndicatorAnimation.delay, [
       Animated.delay(0),
       ...dotsTranslateY.map(dotTranslateY =>

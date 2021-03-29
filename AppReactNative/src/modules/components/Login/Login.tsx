@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Text, TextInput, Alert } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
-import { LoadingButton } from '..';
+import { LoadingButton, ModalWindow } from '..';
 import {
   defaultStyles,
   backgroundGradientColors,
@@ -25,6 +25,7 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const changeLoginHandler = (value: string): void => {
     setLogin(value);
@@ -42,8 +43,8 @@ export const Login: React.FC = () => {
         dispatch(setUserData(login, res.token));
         dispatch(setProducts(productsMock));
 
+        setIsModalVisible(true);
         setIsError(false);
-        Alert.alert(`Welcome to ${nameOfStore}`, `Your token: ${res.token}`);
       } else {
         setIsError(true);
       }
@@ -91,6 +92,13 @@ export const Login: React.FC = () => {
           errorTitle={errorLoginTitle}
         />
       </KeyboardAvoidingView>
+      <ModalWindow
+        modalType="success"
+        description={`Welcome to ${nameOfStore}`}
+        buttonTitle="Close"
+        isVisible={isModalVisible}
+        setIsVisible={setIsModalVisible}
+      />
     </LinearGradient>
   );
 };

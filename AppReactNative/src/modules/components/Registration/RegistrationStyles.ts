@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   registrationButtonText: {
     color: defaultStyles.colors.white,
     fontWeight: 'bold',
+    textTransform: 'uppercase',
     fontSize: defaultStyles.fontSize.small,
   },
 
