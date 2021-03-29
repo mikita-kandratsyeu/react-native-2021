@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicator, View } from 'react-native';
-import { Product, Separator, Header } from '..';
+import { View } from 'react-native';
+import { Product, Separator, Header, LoadingIndicator } from '..';
 import { Description } from './components';
 import { StackParamsList } from '../../types';
 import { getCurrentProduct, setCurrentProductAction } from '../../../actions';
-import { defaultStyles, spinner, StackRouters } from '../../../constans';
 import { getCurrentProductSelector } from '../../../selectors';
+import { defaultStyles, spinner, StackRouters } from '../../../constans';
 
 export const ProductDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export const ProductDetails: React.FC = () => {
       <Header />
       {isLoading ? (
         <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+          <LoadingIndicator color={defaultStyles.colors.blue} />
         </View>
       ) : (
         <>

@@ -32,7 +32,6 @@ const drawerRoutes = () => (
 export const Application: React.FC = () => {
   const user = useSelector(getUserDataSelector);
 
-  // TODO: Feature #0: Implement a new Header with using ReactNavigate
   return (
     <NavigationContainer>
       <Stack.Navigator

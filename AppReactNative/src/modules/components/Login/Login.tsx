@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Text, TextInput, Alert } from 'react-native';
-import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
+import { LoadingButton } from '..';
 import {
   defaultStyles,
   backgroundGradientColors,
   nameOfStore,
-  opacityButton,
   StackRouters,
+  defaultLoginTitle,
+  errorLoginTitle,
 } from '../../../constans';
 import { loginIntoSystem, setProducts, setUserData } from '../../../actions';
 import { productsMock } from '../../../mock';
@@ -21,7 +23,8 @@ export const Login: React.FC = () => {
 
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const changeLoginHandler = (value: string): void => {
     setLogin(value);
@@ -32,19 +35,20 @@ export const Login: React.FC = () => {
   };
 
   const submitHandler = (): void => {
-    setIsButtonDisabled(true);
+    setIsLoading(true);
 
     loginIntoSystem(login, password).then(res => {
       if (res) {
         dispatch(setUserData(login, res.token));
         dispatch(setProducts(productsMock));
 
+        setIsError(false);
         Alert.alert(`Welcome to ${nameOfStore}`, `Your token: ${res.token}`);
       } else {
-        Alert.alert('Error', 'Something went wrong! Try again!');
+        setIsError(true);
       }
 
-      setIsButtonDisabled(false);
+      setIsLoading(false);
     });
   };
 
@@ -79,12 +83,13 @@ export const Login: React.FC = () => {
           onPress={() => navigator.navigate(StackRouters.registration)}>
           <Text style={styles.link}>New here? Registration</Text>
         </TouchableHighlight>
-        <RectButton
-          style={[styles.loginButton, isButtonDisabled && opacityButton]}
-          enabled={!isButtonDisabled}
-          onPress={submitHandler}>
-          <Text style={styles.loginButtonText}>Login</Text>
-        </RectButton>
+        <LoadingButton
+          isLoading={isLoading}
+          onPress={submitHandler}
+          isError={isError}
+          defaultTitle={defaultLoginTitle}
+          errorTitle={errorLoginTitle}
+        />
       </KeyboardAvoidingView>
     </LinearGradient>
   );
