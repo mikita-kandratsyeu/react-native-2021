@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { View, Text } from 'react-native';
+import { View, Text, Linking } from 'react-native';
 import Share from 'react-native-share';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
@@ -14,7 +14,9 @@ import {
   apiHost,
   defaultStyles,
   DrawerRouters,
+  emailAddress,
   nameOfStore,
+  phoneStore,
 } from '../../../constans';
 import styles from './CustomDrawerStyles';
 
@@ -115,7 +117,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={() =>
+            Linking.openURL(`mailto:${emailAddress}?subject=${nameOfStore}`)
+          }
         />
         <DrawerItem
           label="Call"
@@ -129,7 +133,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={() => Linking.openURL(`tel:${phoneStore}`)}
         />
       </View>
       <View
