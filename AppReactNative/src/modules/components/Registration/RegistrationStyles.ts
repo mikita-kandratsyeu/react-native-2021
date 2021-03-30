@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: defaultStyles.colors.blue,
     height: 40,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
   registrationButtonText: {
     color: defaultStyles.colors.white,
     fontWeight: 'bold',
+    textTransform: 'uppercase',
     fontSize: defaultStyles.fontSize.small,
   },
 

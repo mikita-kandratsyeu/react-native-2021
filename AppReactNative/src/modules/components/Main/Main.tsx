@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header, Separator } from '..';
+import { Header, LoadingIndicator, Separator } from '..';
 import { defaultStyles, spinner } from '../../../constans';
 import { getCategoriesSelector } from '../../../selectors';
 import { ProductCategory, ProductList } from './components';
@@ -67,7 +67,7 @@ export const Main: React.FC = () => {
       <Header isSearchVisible isToggleButtonVisible />
       {isLoading ? (
         <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+          <LoadingIndicator color={defaultStyles.colors.blue} />
         </View>
       ) : (
         <>

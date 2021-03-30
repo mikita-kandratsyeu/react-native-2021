@@ -1,6 +1,10 @@
 export const apiHost: string = 'http://35.231.209.61/';
 
 export const nameOfStore: string = 'Ecommerce Store';
+export const errorLoginTitle: string = 'Oops! Try Again!';
+export const defaultLoginTitle: string = 'Login';
+export const errorInternetConnection: string =
+  'Oops! You may have lost your internet connection!';
 
 export const maxLengthTitleProductList: number = 15;
 export const maxLengthCategoryTitle: number = 9;
@@ -35,3 +39,10 @@ export const unnecessarySymbols: string[] = [
   '<ul>',
   '</ul>',
 ];
+
+export enum LoadingIndicatorAnimation {
+  duration = 150,
+  delay = 100,
+  startTranslateY = 0,
+  endTranslateY = -10,
+}

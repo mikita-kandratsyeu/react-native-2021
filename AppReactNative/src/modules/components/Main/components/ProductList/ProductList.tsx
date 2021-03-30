@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ActivityIndicator,
-  RefreshControl,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import { RefreshControl, SafeAreaView, Text, View } from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { IProductListProps } from './interfaces';
@@ -14,6 +8,7 @@ import { defaultStyles, spinner } from '../../../../../constans';
 import { Product } from '../../../Product';
 import { getProductsSelector } from '../../../../../selectors';
 import { getProducts, setProductsAction } from '../../../../../actions';
+import { LoadingIndicator } from '../../../UI';
 import styles, { marginLeftCalc } from './ProductListStyles';
 
 export const ProductList: React.FC<IProductListProps> = ({
@@ -69,7 +64,7 @@ export const ProductList: React.FC<IProductListProps> = ({
       </View>
       {isLoading ? (
         <View style={spinner}>
-          <ActivityIndicator color={defaultStyles.colors.blue} size="large" />
+          <LoadingIndicator color={defaultStyles.colors.blue} />
         </View>
       ) : (
         <SafeAreaView style={styles.productListContainer}>
@@ -100,10 +95,7 @@ export const ProductList: React.FC<IProductListProps> = ({
             ListFooterComponent={
               isLoadingMore ? (
                 <View style={spinner}>
-                  <ActivityIndicator
-                    color={defaultStyles.colors.blue}
-                    size="large"
-                  />
+                  <LoadingIndicator color={defaultStyles.colors.blue} />
                 </View>
               ) : null
             }

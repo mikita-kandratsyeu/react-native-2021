@@ -17,3 +17,6 @@ export const getTruncatedString = (originString: string, maxlength: number) => {
 
   return originString;
 };
+
+export const getCapitalizeWord = (word: string): string =>
+  `${word.charAt(0).toUpperCase() + word.slice(1)}`;
