@@ -1,10 +1,17 @@
 import React from 'react';
 import { RectButton } from 'react-native-gesture-handler';
-import { LayoutAnimation, Text } from 'react-native';
+import { LayoutAnimation, Platform, Text, UIManager } from 'react-native';
 import { LoadingIndicator } from '..';
 import { ILoadingButtonProps } from './interfaces';
 import { defaultStyles } from '../../../../constans';
 import styles from './LoadingButtonStyles';
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 export const LoadingButton: React.FC<ILoadingButtonProps> = ({
   isLoading,

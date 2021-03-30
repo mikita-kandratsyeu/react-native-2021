@@ -14,8 +14,8 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
   onPress,
   isBackButtonBlock,
 }) => {
-  const getTitleColor = (typeString: string): string => {
-    switch (typeString) {
+  const getTitleColor = (): string => {
+    switch (modalType) {
       case 'warning':
         return defaultStyles.colors.orange;
       case 'success':
@@ -37,14 +37,14 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
       }}>
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          <Text style={[styles.title, { color: getTitleColor(modalType) }]}>
-            {getCapitalizeWord(modalType)}
+          <Text style={[styles.title, { color: getTitleColor() }]}>
+            {`${getCapitalizeWord(modalType)}!`}
           </Text>
           <Text style={styles.description}>{description}</Text>
           <Pressable
             style={styles.button}
             onPress={() => {
-              if (onPress) onPress();
+              onPress?.();
               setIsVisible(false);
             }}>
             <Text style={styles.buttonText}>{buttonTitle}</Text>
