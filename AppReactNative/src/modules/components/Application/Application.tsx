@@ -59,7 +59,7 @@ export const Application: React.FC = () => {
     }
   };
 
-  console.log(token);
+  getUserToken().then(userToken => setToken(userToken));
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -72,8 +72,6 @@ export const Application: React.FC = () => {
       unsubscribe();
     };
   }, []);
-
-  getUserToken().then(userToken => setToken(userToken));
 
   return (
     <>

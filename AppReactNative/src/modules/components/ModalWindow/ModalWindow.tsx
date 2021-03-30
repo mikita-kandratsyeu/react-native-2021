@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, View, Text, Pressable } from 'react-native';
+import React, { useEffect } from 'react';
+import { Modal, View, Text, Pressable, Vibration } from 'react-native';
 import { IModalWindowProps } from './interfaces';
 import { defaultStyles } from '../../../constans';
 import { getCapitalizeWord } from '../../../services';
@@ -14,6 +14,8 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
   onPress,
   isBackButtonBlock,
 }) => {
+  const vibratePattern = [1000, 2000, 3000];
+
   const getTitleColor = (): string => {
     switch (modalType) {
       case 'warning':
@@ -26,6 +28,10 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
         return defaultStyles.colors.black;
     }
   };
+
+  useEffect(() => {
+    if (isVisible) Vibration.vibrate(vibratePattern);
+  }, [isVisible]);
 
   return (
     <Modal
