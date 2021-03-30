@@ -31,7 +31,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               style={styles.itemIcon}
               name="user"
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -45,7 +45,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="hearto"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -59,7 +59,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="shoppingcart"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -73,7 +73,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="appstore1"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -90,7 +90,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="mail"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -104,7 +104,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="phone"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -125,7 +125,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="sharealt"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -139,7 +139,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             <Icon
               name="logout"
               style={styles.itemIcon}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
