@@ -94,10 +94,11 @@ export const Login: React.FC = () => {
       </KeyboardAvoidingView>
       <ModalWindow
         modalType="success"
-        description={`Welcome to ${nameOfStore}`}
+        description={`Welcome to ${nameOfStore}!`}
         buttonTitle="Close"
         isVisible={isModalVisible}
         setIsVisible={setIsModalVisible}
+        isCustomButtonVisible
       />
     </LinearGradient>
   );

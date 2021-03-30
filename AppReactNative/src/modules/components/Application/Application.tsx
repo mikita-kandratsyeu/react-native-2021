@@ -65,6 +65,8 @@ export const Application: React.FC = () => {
     const unsubscribe = NetInfo.addEventListener(state => {
       if (!state.isConnected) {
         setIsModalVisible(true);
+      } else {
+        setIsModalVisible(false);
       }
     });
 

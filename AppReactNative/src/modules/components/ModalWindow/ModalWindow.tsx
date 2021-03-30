@@ -13,6 +13,7 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
   setIsVisible,
   onPress,
   isBackButtonBlock,
+  isCustomButtonVisible,
 }) => {
   const vibratePattern = [1000, 2000, 3000];
 
@@ -47,14 +48,16 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
             {`${getCapitalizeWord(modalType)}!`}
           </Text>
           <Text style={styles.description}>{description}</Text>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              onPress?.();
-              setIsVisible(false);
-            }}>
-            <Text style={styles.buttonText}>{buttonTitle}</Text>
-          </Pressable>
+          {isCustomButtonVisible && (
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                onPress?.();
+                setIsVisible(false);
+              }}>
+              <Text style={styles.buttonText}>{buttonTitle}</Text>
+            </Pressable>
+          )}
         </View>
       </View>
     </Modal>

@@ -8,4 +8,5 @@ export interface IModalWindowProps {
   setIsVisible: Dispatch<SetStateAction<boolean>>;
   onPress?: () => void;
   isBackButtonBlock?: boolean;
+  isCustomButtonVisible?: boolean;
 }
