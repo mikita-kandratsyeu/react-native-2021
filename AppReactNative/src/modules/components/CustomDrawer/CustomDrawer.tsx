@@ -7,14 +7,35 @@ import {
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { View, Text } from 'react-native';
+import Share from 'react-native-share';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
-import { defaultStyles, DrawerRouters, nameOfStore } from '../../../constans';
+import {
+  apiHost,
+  defaultStyles,
+  DrawerRouters,
+  nameOfStore,
+} from '../../../constans';
 import styles from './CustomDrawerStyles';
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const navigator = useNavigation();
   const dispatch = useDispatch();
+
+  const shareHandler = async () => {
+    const shareOptions = {
+      message: nameOfStore,
+      url: apiHost,
+    };
+
+    try {
+      return await Share.open(shareOptions);
+    } catch (err) {
+      console.error(err);
+
+      return null;
+    }
+  };
 
   return (
     <DrawerContentScrollView {...props} style={styles.container}>
@@ -129,7 +150,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={shareHandler}
         />
         <DrawerItem
           label="Logout"

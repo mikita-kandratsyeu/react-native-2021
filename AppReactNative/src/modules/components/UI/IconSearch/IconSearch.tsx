@@ -8,6 +8,6 @@ export const IconSearch: React.FC<IIconSearchProps> = ({ isVisible, color }) =>
     <Icon
       name="search1"
       size={defaultStyles.fontSize.large}
-      color={color || defaultStyles.colors.white}
+      color={color || defaultStyles.colors.grey}
     />
   ) : null;
