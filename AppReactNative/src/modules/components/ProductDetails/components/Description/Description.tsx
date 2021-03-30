@@ -4,8 +4,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native-gesture-handler';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { IDescriptionProps } from './interfaces';
 import { defaultStyles } from '../../../../../constans';
 import styles from './DescriptionStyles';
@@ -20,9 +19,9 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
           underlayColor={defaultStyles.colors.pressLink}
           onPress={() => null}>
           <View style={styles.wishList}>
-            <FontAwesomeIcon
+            <Icon
+              name="hearto"
               style={styles.wishListIcon}
-              icon={faHeart}
               size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />

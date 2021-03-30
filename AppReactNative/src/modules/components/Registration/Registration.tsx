@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAvoidingView, Text, TextInput } from 'react-native';
 import { RectButton, TouchableHighlight } from 'react-native-gesture-handler';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import {
   backgroundGradientColors,
@@ -46,9 +45,9 @@ export const Registration: React.FC = () => {
         style={styles.iconArrowBack}
         underlayColor={defaultStyles.colors.pressLink}
         onPress={() => navigator.goBack()}>
-        <FontAwesomeIcon
-          icon={faArrowLeft}
-          size={defaultStyles.fontSize.medium}
+        <Icon
+          name="arrowleft"
+          size={defaultStyles.fontSize.large}
           color={defaultStyles.colors.black}
         />
       </TouchableHighlight>

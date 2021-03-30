@@ -5,17 +5,7 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faUser,
-  faHeart,
-  faCartArrowDown,
-  faShoppingCart,
-  faEnvelope,
-  faPhone,
-  faShare,
-  faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
@@ -38,9 +28,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
               style={styles.itemIcon}
-              icon={faUser}
+              name="user"
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -52,9 +42,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="hearto"
               style={styles.itemIcon}
-              icon={faHeart}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -66,9 +56,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="shoppingcart"
               style={styles.itemIcon}
-              icon={faShoppingCart}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -80,9 +70,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="appstore1"
               style={styles.itemIcon}
-              icon={faCartArrowDown}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -97,9 +87,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="mail"
               style={styles.itemIcon}
-              icon={faEnvelope}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -111,9 +101,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="phone"
               style={styles.itemIcon}
-              icon={faPhone}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -132,9 +122,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="sharealt"
               style={styles.itemIcon}
-              icon={faShare}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
@@ -146,9 +136,9 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="logout"
               style={styles.itemIcon}
-              icon={faSignOutAlt}
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.blue}
             />
