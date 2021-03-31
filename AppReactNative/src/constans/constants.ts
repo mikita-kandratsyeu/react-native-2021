@@ -18,8 +18,9 @@ export enum StackRouters {
   registration = 'Registration',
   main = 'Main',
   productDetails = 'ProductDetails',
-  mapView = 'mapView',
+  mapView = 'MapView',
   mockComponent = 'MockComponent',
+  orderDetails = 'OrderDetails',
 }
 
 export enum DrawerRouters {

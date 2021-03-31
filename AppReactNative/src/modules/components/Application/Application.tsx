@@ -18,6 +18,7 @@ import {
   ModalWindow,
   OrdersList,
   Map,
+  OrderDetails,
 } from '..';
 import { getUserDataSelector } from '../../../selectors';
 import {
@@ -96,6 +97,10 @@ export const Application: React.FC = () => {
               <Stack.Screen
                 name={StackRouters.mockComponent}
                 component={MockComponent}
+              />
+              <Stack.Screen
+                name={StackRouters.orderDetails}
+                component={OrderDetails}
               />
               <Stack.Screen name={StackRouters.mapView} component={Map} />
             </>

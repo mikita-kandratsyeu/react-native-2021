@@ -7,6 +7,7 @@ import { IProduct } from '../../../../interfaces';
 import {
   defaultStyles,
   maxLengthTitleProductList,
+  StackRouters,
 } from '../../../../../constans';
 import styles from './OrderStyles';
 import { getTruncatedString } from '../../../../../services';
@@ -31,7 +32,11 @@ export const Orders: React.FC<IOrderProps> = ({ order }) => {
       <View style={styles.bottomWrapper}>
         <TouchableHighlight
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => navigator.navigate('mapView')}>
+          onPress={() =>
+            navigator.navigate(StackRouters.orderDetails, {
+              order,
+            })
+          }>
           <Text style={styles.link}>View Order Details</Text>
         </TouchableHighlight>
         <Text style={styles.date}>Date: {order.date}</Text>

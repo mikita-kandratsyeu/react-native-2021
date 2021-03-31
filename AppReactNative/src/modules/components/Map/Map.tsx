@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation';
 import { View } from 'react-native';
-import { Header, ModalWindow } from '..';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { Header } from '..';
 import styles from './MapStyles';
+import { StackParamsList } from '../../types';
+import { StackRouters } from '../../../constans';
 
 interface IPosition {
   latitude: number;
@@ -13,34 +15,16 @@ interface IPosition {
 }
 
 export const Map: React.FC = () => {
-  const initialPosition: IPosition = {
+  const route = useRoute<RouteProp<StackParamsList, StackRouters.mapView>>();
+
+  const { shippingAddress } = route.params;
+
+  const position: IPosition = {
     latitude: 0,
     longitude: 0,
     latitudeDelta: 0.09222,
     longitudeDelta: 0.0421,
   };
-
-  const [currentPosition, setCurrentPosition] = useState<IPosition>(
-    initialPosition,
-  );
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  useEffect(() => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const { longitude, latitude } = position.coords;
-
-        setCurrentPosition(currentPos => ({
-          ...currentPos,
-          longitude,
-          latitude,
-        }));
-      },
-      () => {
-        setIsModalVisible(true);
-      },
-    );
-  }, []);
 
   return (
     <>
@@ -49,18 +33,14 @@ export const Map: React.FC = () => {
           style={styles.map}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
-          initialRegion={currentPosition}
+          initialRegion={{
+            ...position,
+            latitude: shippingAddress.coordinates.latitude,
+            longitude: shippingAddress.coordinates.longitude,
+          }}
         />
         <Header />
       </View>
-      <ModalWindow
-        modalType="error"
-        description="Something went wrong!"
-        buttonTitle="Close"
-        isVisible={isModalVisible}
-        setIsVisible={setIsModalVisible}
-        isCustomButtonVisible
-      />
     </>
   );
 };
