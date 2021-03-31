@@ -1,5 +1,5 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Header } from '..';
@@ -37,8 +37,16 @@ export const Map: React.FC = () => {
             ...position,
             latitude: shippingAddress.coordinates.latitude,
             longitude: shippingAddress.coordinates.longitude,
-          }}
-        />
+          }}>
+          <Marker
+            coordinate={{
+              latitude: shippingAddress.coordinates.latitude,
+              longitude: shippingAddress.coordinates.longitude,
+            }}
+            title="Shipping Address"
+            description={shippingAddress.name}
+          />
+        </MapView>
         <Header />
       </View>
     </>
