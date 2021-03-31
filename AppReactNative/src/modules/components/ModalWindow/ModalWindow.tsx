@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, View, Text, Pressable } from 'react-native';
+import React, { useEffect } from 'react';
+import { Modal, View, Text, Pressable, Vibration } from 'react-native';
 import { IModalWindowProps } from './interfaces';
 import { defaultStyles } from '../../../constans';
 import { getCapitalizeWord } from '../../../services';
@@ -13,7 +13,10 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
   setIsVisible,
   onPress,
   isBackButtonBlock,
+  isCustomButtonVisible,
 }) => {
+  const vibratePattern = [1000, 2000, 3000];
+
   const getTitleColor = (): string => {
     switch (modalType) {
       case 'warning':
@@ -26,6 +29,10 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
         return defaultStyles.colors.black;
     }
   };
+
+  useEffect(() => {
+    if (isVisible) Vibration.vibrate(vibratePattern);
+  }, [isVisible]);
 
   return (
     <Modal
@@ -41,14 +48,16 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
             {`${getCapitalizeWord(modalType)}!`}
           </Text>
           <Text style={styles.description}>{description}</Text>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              onPress?.();
-              setIsVisible(false);
-            }}>
-            <Text style={styles.buttonText}>{buttonTitle}</Text>
-          </Pressable>
+          {isCustomButtonVisible && (
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                onPress?.();
+                setIsVisible(false);
+              }}>
+              <Text style={styles.buttonText}>{buttonTitle}</Text>
+            </Pressable>
+          )}
         </View>
       </View>
     </Modal>

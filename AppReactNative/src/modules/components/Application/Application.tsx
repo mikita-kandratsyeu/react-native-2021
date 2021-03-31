@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import NetInfo from '@react-native-community/netinfo';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Login,
   Registration,
@@ -46,11 +47,26 @@ export const Application: React.FC = () => {
   const user = useSelector(getUserDataSelector);
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
+
+  const getUserToken = async () => {
+    try {
+      return await AsyncStorage.getItem('userToken');
+    } catch (err) {
+      console.info(err);
+
+      return null;
+    }
+  };
+
+  getUserToken().then(userToken => setToken(userToken));
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
       if (!state.isConnected) {
         setIsModalVisible(true);
+      } else {
+        setIsModalVisible(false);
       }
     });
 
@@ -69,7 +85,7 @@ export const Application: React.FC = () => {
             gestureDirection: 'horizontal',
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           }}>
-          {user.token ? (
+          {token || user.token ? (
             <>
               <Stack.Screen name={StackRouters.main} component={drawerRoutes} />
               <Stack.Screen
