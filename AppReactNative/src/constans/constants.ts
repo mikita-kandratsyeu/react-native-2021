@@ -11,11 +11,14 @@ export const errorInternetConnection: string =
 export const maxLengthTitleProductList: number = 15;
 export const maxLengthCategoryTitle: number = 9;
 
+export const dateFormat: string = 'DD/MM/YYYY HH:mm:ss';
+
 export enum StackRouters {
   login = 'Login',
   registration = 'Registration',
   main = 'Main',
   productDetails = 'ProductDetails',
+  mapView = 'mapView',
   mockComponent = 'MockComponent',
 }
 

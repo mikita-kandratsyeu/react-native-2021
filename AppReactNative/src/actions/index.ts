@@ -5,3 +5,4 @@ export * from './set-products-mock.action';
 export * from './set-categories.action';
 export * from './set-products.action';
 export * from './set-current-product.action';
+export * from './set-orders.action';

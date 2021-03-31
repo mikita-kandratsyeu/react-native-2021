@@ -16,6 +16,7 @@ import {
   MockComponent,
   CustomDrawer,
   ModalWindow,
+  OrdersList,
   Map,
 } from '..';
 import { getUserDataSelector } from '../../../selectors';
@@ -34,11 +35,10 @@ const drawerRoutes = () => (
     initialRouteName={StackRouters.main}
     drawerContent={props => <CustomDrawer {...props} />}>
     <Drawer.Screen name={StackRouters.main} component={Main} />
-    {/* TODO: Temporary link */}
-    <Drawer.Screen name={DrawerRouters.profile} component={Map} />
+    <Drawer.Screen name={DrawerRouters.profile} component={MockComponent} />
     <Drawer.Screen name={DrawerRouters.wishList} component={MockComponent} />
     <Drawer.Screen name={DrawerRouters.cart} component={MockComponent} />
-    <Drawer.Screen name={DrawerRouters.orders} component={MockComponent} />
+    <Drawer.Screen name={DrawerRouters.orders} component={OrdersList} />
   </Drawer.Navigator>
 );
 
@@ -97,6 +97,7 @@ export const Application: React.FC = () => {
                 name={StackRouters.mockComponent}
                 component={MockComponent}
               />
+              <Stack.Screen name={StackRouters.mapView} component={Map} />
             </>
           ) : (
             <>

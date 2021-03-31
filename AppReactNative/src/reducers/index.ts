@@ -4,3 +4,4 @@ export * from './set-products-mock.reducer';
 export * from './set-categories.reducer';
 export * from './set-products.reducer';
 export * from './set-current-product.reducer';
+export * from './set-orders.reducer';

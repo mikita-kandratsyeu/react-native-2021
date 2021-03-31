@@ -6,6 +6,7 @@ import {
   setCategoriesReducer,
   setProductsReducer,
   setCurrentProductReducer,
+  setOrdersReducer,
 } from '../reducers';
 
 const createRootReducer = () =>
@@ -16,8 +17,7 @@ const createRootReducer = () =>
     categories: setCategoriesReducer,
     products: setProductsReducer,
     currentProduct: setCurrentProductReducer,
-    // TODO: add data for Orders Page
-    // orders: setOrdersReducer,
+    orders: setOrdersReducer,
   });
 
 export default createRootReducer;
