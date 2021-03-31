@@ -16,6 +16,8 @@ const createRootReducer = () =>
     categories: setCategoriesReducer,
     products: setProductsReducer,
     currentProduct: setCurrentProductReducer,
+    // TODO: add data for Orders Page
+    // orders: setOrdersReducer,
   });
 
 export default createRootReducer;

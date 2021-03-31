@@ -10,3 +10,4 @@ export * from './UI';
 export * from './MockComponent';
 export * from './CustomDrawer';
 export * from './ModalWindow';
+export * from './Map';
