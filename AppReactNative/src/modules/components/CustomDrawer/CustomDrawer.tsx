@@ -5,26 +5,39 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faUser,
-  faHeart,
-  faCartArrowDown,
-  faShoppingCart,
-  faEnvelope,
-  faPhone,
-  faShare,
-  faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { View, Text, Linking } from 'react-native';
+import Share from 'react-native-share';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
-import { defaultStyles, DrawerRouters, nameOfStore } from '../../../constans';
+import {
+  apiHost,
+  defaultStyles,
+  DrawerRouters,
+  emailAddress,
+  nameOfStore,
+  phoneStore,
+} from '../../../constans';
 import styles from './CustomDrawerStyles';
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const navigator = useNavigation();
   const dispatch = useDispatch();
+
+  const shareHandler = async () => {
+    const shareOptions = {
+      message: nameOfStore,
+      url: apiHost,
+    };
+
+    try {
+      return await Share.open(shareOptions);
+    } catch (err) {
+      console.error(err);
+
+      return null;
+    }
+  };
 
   return (
     <DrawerContentScrollView {...props} style={styles.container}>
@@ -38,10 +51,10 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
               style={styles.itemIcon}
-              icon={faUser}
-              size={defaultStyles.fontSize.large}
+              name="user"
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -52,10 +65,10 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="hearto"
               style={styles.itemIcon}
-              icon={faHeart}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -66,10 +79,10 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="shoppingcart"
               style={styles.itemIcon}
-              icon={faShoppingCart}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -80,10 +93,10 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="appstore1"
               style={styles.itemIcon}
-              icon={faCartArrowDown}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
@@ -97,28 +110,30 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="mail"
               style={styles.itemIcon}
-              icon={faEnvelope}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={() =>
+            Linking.openURL(`mailto:${emailAddress}?subject=${nameOfStore}`)
+          }
         />
         <DrawerItem
           label="Call"
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="phone"
               style={styles.itemIcon}
-              icon={faPhone}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={() => Linking.openURL(`tel:${phoneStore}`)}
         />
       </View>
       <View
@@ -132,24 +147,24 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="sharealt"
               style={styles.itemIcon}
-              icon={faShare}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => null}
+          onPress={shareHandler}
         />
         <DrawerItem
           label="Logout"
           labelStyle={styles.labelStyle}
           style={styles.item}
           icon={() => (
-            <FontAwesomeIcon
+            <Icon
+              name="logout"
               style={styles.itemIcon}
-              icon={faSignOutAlt}
-              size={defaultStyles.fontSize.large}
+              size={defaultStyles.fontSize.medium}
               color={defaultStyles.colors.blue}
             />
           )}

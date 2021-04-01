@@ -17,4 +17,10 @@ export const styles = StyleSheet.create({
   input: {
     height: 40,
   },
+
+  icon: {
+    marginLeft: defaultStyles.margin.small,
+    marginRight: defaultStyles.margin.small,
+    alignSelf: 'center',
+  },
 });

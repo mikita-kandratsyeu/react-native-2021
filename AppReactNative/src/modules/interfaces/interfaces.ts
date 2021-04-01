@@ -73,10 +73,30 @@ export interface IProduct {
   records?: string;
 }
 
+export interface IOrder {
+  id: string;
+  date: string;
+  totalAmount: number | string;
+  paymentMode: string;
+  shippingAddress: {
+    name: string;
+    coordinates: {
+      longitude: number;
+      latitude: number;
+    };
+  };
+  status: string;
+  products: IProduct[];
+}
+
 export interface IProductsState {
   products: IProduct[];
 }
 
 export interface ICurrentProductState {
   currentProduct: IProduct;
+}
+
+export interface IOrdersState {
+  orders: IOrder[];
 }

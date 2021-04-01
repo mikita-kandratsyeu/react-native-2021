@@ -16,13 +16,15 @@ import {
   MockComponent,
   CustomDrawer,
   ModalWindow,
+  OrdersList,
+  Map,
+  OrderDetails,
 } from '..';
 import { getUserDataSelector } from '../../../selectors';
 import {
   StackRouters,
   DrawerRouters,
   errorInternetConnection,
-  defaultLoginTitle,
 } from '../../../constans';
 import { setUserData } from '../../../actions';
 
@@ -37,7 +39,7 @@ const drawerRoutes = () => (
     <Drawer.Screen name={DrawerRouters.profile} component={MockComponent} />
     <Drawer.Screen name={DrawerRouters.wishList} component={MockComponent} />
     <Drawer.Screen name={DrawerRouters.cart} component={MockComponent} />
-    <Drawer.Screen name={DrawerRouters.orders} component={MockComponent} />
+    <Drawer.Screen name={DrawerRouters.orders} component={OrdersList} />
   </Drawer.Navigator>
 );
 
@@ -96,6 +98,11 @@ export const Application: React.FC = () => {
                 name={StackRouters.mockComponent}
                 component={MockComponent}
               />
+              <Stack.Screen
+                name={StackRouters.orderDetails}
+                component={OrderDetails}
+              />
+              <Stack.Screen name={StackRouters.mapView} component={Map} />
             </>
           ) : (
             <>
@@ -111,7 +118,6 @@ export const Application: React.FC = () => {
       <ModalWindow
         modalType="warning"
         description={errorInternetConnection}
-        buttonTitle={defaultLoginTitle}
         isVisible={isModalVisible}
         setIsVisible={setIsModalVisible}
         onPress={() => dispatch(setUserData('', ''))}

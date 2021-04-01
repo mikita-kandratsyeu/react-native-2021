@@ -1,6 +1,8 @@
 export const apiHost: string = 'http://35.231.209.61/';
 
 export const nameOfStore: string = 'Ecommerce Store';
+export const emailAddress: string = 'support@ecommerce.com';
+export const phoneStore: string = '82921234567';
 export const errorLoginTitle: string = 'Oops! Try Again!';
 export const defaultLoginTitle: string = 'Login';
 export const errorInternetConnection: string =
@@ -9,12 +11,16 @@ export const errorInternetConnection: string =
 export const maxLengthTitleProductList: number = 15;
 export const maxLengthCategoryTitle: number = 9;
 
+export const dateFormat: string = 'DD/MM/YYYY HH:mm:ss';
+
 export enum StackRouters {
   login = 'Login',
   registration = 'Registration',
   main = 'Main',
   productDetails = 'ProductDetails',
+  mapView = 'MapView',
   mockComponent = 'MockComponent',
+  orderDetails = 'OrderDetails',
 }
 
 export enum DrawerRouters {

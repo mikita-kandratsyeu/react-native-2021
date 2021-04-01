@@ -1,12 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  faArrowLeft,
-  faBars,
-  faShoppingCart,
-} from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IHeaderProps } from './interfaces';
 import { Search, IconSearch } from '../UI';
@@ -25,8 +20,8 @@ export const Header: React.FC<IHeaderProps> = ({
         style={styles.iconButton}
         underlayColor={defaultStyles.colors.pressLink}
         onPress={() => navigator.dispatch(DrawerActions.toggleDrawer())}>
-        <FontAwesomeIcon
-          icon={faBars}
+        <Icon
+          name="bars"
           size={defaultStyles.fontSize.large}
           color={defaultStyles.colors.white}
         />
@@ -36,8 +31,8 @@ export const Header: React.FC<IHeaderProps> = ({
         style={styles.iconButton}
         underlayColor={defaultStyles.colors.pressLink}
         onPress={() => navigator.goBack()}>
-        <FontAwesomeIcon
-          icon={faArrowLeft}
+        <Icon
+          name="arrowleft"
           size={defaultStyles.fontSize.large}
           color={defaultStyles.colors.white}
         />
@@ -62,8 +57,8 @@ export const Header: React.FC<IHeaderProps> = ({
             style={styles.iconButton}
             underlayColor={defaultStyles.colors.pressLink}
             onPress={() => navigator.navigate(StackRouters.mockComponent)}>
-            <FontAwesomeIcon
-              icon={faShoppingCart}
+            <Icon
+              name="shoppingcart"
               size={defaultStyles.fontSize.large}
               color={defaultStyles.colors.white}
             />
