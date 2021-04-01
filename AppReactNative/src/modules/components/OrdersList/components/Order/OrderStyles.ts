@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   productName: {
     color: defaultStyles.colors.black,
     fontSize: defaultStyles.fontSize.small,
+    width: 180,
   },
 
   productImage: {

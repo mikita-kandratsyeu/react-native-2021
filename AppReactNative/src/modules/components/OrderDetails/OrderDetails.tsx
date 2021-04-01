@@ -1,15 +1,14 @@
 import React from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Image } from 'react-native';
-import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
-import { StackParamsList } from '../../types';
 import {
-  defaultStyles,
-  maxLengthTitleProductList,
-  StackRouters,
-} from '../../../constans';
+  FlatList,
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
+import { StackParamsList } from '../../types';
+import { defaultStyles, StackRouters } from '../../../constans';
 import { IProduct } from '../../interfaces';
-import { getTruncatedString } from '../../../services';
 import { Header } from '../Header';
 import { Separator } from '../UI';
 import styles from './OrderDetailsStyles';
@@ -22,7 +21,6 @@ export const OrderDetails: React.FC = () => {
 
   const { order } = route.params;
 
-  console.log(order);
   return (
     <>
       <Header />
@@ -53,11 +51,7 @@ export const OrderDetails: React.FC = () => {
                   shippingAddress: order.shippingAddress,
                 })
               }>
-              <Text
-                style={[
-                  styles.itemDescription,
-                  { fontSize: defaultStyles.fontSize.small },
-                ]}>
+              <Text style={[styles.itemDescription, styles.clickableItem]}>
                 {order.shippingAddress.name}
               </Text>
             </TouchableHighlight>
@@ -80,15 +74,22 @@ export const OrderDetails: React.FC = () => {
             data={order.products}
             keyExtractor={(item: IProduct) => item.id}
             renderItem={({ item }: { item: IProduct }) => (
-              <View style={styles.productWrapper}>
-                <View>
-                  <Text style={styles.productTitle}>
-                    {getTruncatedString(item.name, maxLengthTitleProductList)}
-                  </Text>
-                  <Text style={styles.productPrice}>Price: {item.price}$</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigator.navigate(StackRouters.productDetails, {
+                    productId: item.id,
+                  })
+                }>
+                <View style={styles.productWrapper}>
+                  <View>
+                    <Text style={styles.productTitle}>{item.name}</Text>
+                    <Text style={styles.productPrice}>
+                      Price: {item.price}$
+                    </Text>
+                  </View>
+                  <Image style={styles.image} source={item.source} />
                 </View>
-                <Image style={styles.image} source={item.source} />
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>

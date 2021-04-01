@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     width: 150,
   },
 
+  clickableItem: {
+    fontSize: defaultStyles.fontSize.small,
+    textDecorationLine: 'underline',
+  },
+
   title: {
     fontWeight: 'bold',
     textAlign: 'center',
@@ -55,6 +60,7 @@ const styles = StyleSheet.create({
     fontSize: defaultStyles.fontSize.medium,
     color: defaultStyles.colors.blue,
     marginBottom: defaultStyles.margin.small,
+    width: 180,
   },
 
   productPrice: {

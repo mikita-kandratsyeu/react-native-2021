@@ -13,6 +13,7 @@ import styles from './OrdersListStyles';
 
 export const OrdersList: React.FC = () => {
   const dispatch = useDispatch();
+
   const ordersData = useSelector(getOrdersSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
