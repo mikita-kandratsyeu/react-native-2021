@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, NativeModules } from 'react-native';
 import {
   TouchableHighlight,
   TouchableOpacity,
@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { IDescriptionProps } from './interfaces';
 import { defaultStyles } from '../../../../../constans';
 import styles from './DescriptionStyles';
+
+const { ToastModule } = NativeModules;
 
 export const Description: React.FC<IDescriptionProps> = ({ description }) => (
   <View style={styles.container}>
@@ -30,7 +32,13 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
         </TouchableHighlight>
       </View>
       <View style={styles.addToCartWrapper}>
-        <TouchableOpacity onPress={() => null}>
+        <TouchableOpacity
+          onPress={() =>
+            ToastModule.showText(
+              'Product added to your cart',
+              ToastModule.LENGTH_SHORT,
+            )
+          }>
           <View style={styles.addToCart}>
             <Text style={styles.addToCartText}>Add to Cart</Text>
           </View>
