@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Text, View, NativeModules } from 'react-native';
 import {
@@ -9,7 +10,8 @@ import { IDescriptionProps } from './interfaces';
 import { defaultStyles } from '../../../../../constans';
 import styles from './DescriptionStyles';
 
-const { ToastModule } = NativeModules;
+// TODO: Test SQLite
+const { ToastModule, StorageModule } = NativeModules;
 
 export const Description: React.FC<IDescriptionProps> = ({ description }) => (
   <View style={styles.container}>
@@ -19,7 +21,15 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
       <View style={styles.wishListWrapper}>
         <TouchableHighlight
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => null}>
+          onPress={() => {
+            StorageModule.getItem('id', (err: any, data: any) => {
+              if (err) {
+                console.error(err);
+              }
+
+              console.info(data);
+            });
+          }}>
           <View style={styles.wishList}>
             <Icon
               name="hearto"
@@ -34,10 +44,17 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
       <View style={styles.addToCartWrapper}>
         <TouchableOpacity
           onPress={() =>
-            ToastModule.showText(
-              'Product added to your cart',
-              ToastModule.LENGTH_SHORT,
-            )
+            // ToastModule.showText(
+            //   'Product added to your cart',
+            //   ToastModule.LENGTH_SHORT,
+            // )
+            StorageModule.insertItem('id', 'mikita', (err: any, data: any) => {
+              if (err) {
+                console.error(err);
+              }
+
+              console.info(data);
+            })
           }>
           <View style={styles.addToCart}>
             <Text style={styles.addToCartText}>Add to Cart</Text>
