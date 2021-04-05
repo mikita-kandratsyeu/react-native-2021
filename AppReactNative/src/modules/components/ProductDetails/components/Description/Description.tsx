@@ -1,6 +1,5 @@
-/* eslint-disable */
 import React from 'react';
-import { Text, View, NativeModules } from 'react-native';
+import { Text, View, NativeModules, Platform } from 'react-native';
 import {
   TouchableHighlight,
   TouchableOpacity,
@@ -10,8 +9,7 @@ import { IDescriptionProps } from './interfaces';
 import { defaultStyles } from '../../../../../constans';
 import styles from './DescriptionStyles';
 
-// TODO: Test SQLite
-const { ToastModule, StorageModule } = NativeModules;
+const { ToastModule } = NativeModules;
 
 export const Description: React.FC<IDescriptionProps> = ({ description }) => (
   <View style={styles.container}>
@@ -21,15 +19,7 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
       <View style={styles.wishListWrapper}>
         <TouchableHighlight
           underlayColor={defaultStyles.colors.pressLink}
-          onPress={() => {
-            StorageModule.getItem('id', (err: any, data: any) => {
-              if (err) {
-                console.error(err);
-              }
-
-              console.info(data);
-            });
-          }}>
+          onPress={() => null}>
           <View style={styles.wishList}>
             <Icon
               name="hearto"
@@ -44,17 +34,12 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
       <View style={styles.addToCartWrapper}>
         <TouchableOpacity
           onPress={() =>
-            // ToastModule.showText(
-            //   'Product added to your cart',
-            //   ToastModule.LENGTH_SHORT,
-            // )
-            StorageModule.insertItem('id', 'mikita', (err: any, data: any) => {
-              if (err) {
-                console.error(err);
-              }
-
-              console.info(data);
-            })
+            Platform.OS === 'android'
+              ? ToastModule.showText(
+                  'Product added to your cart',
+                  ToastModule.LENGTH_SHORT,
+                )
+              : null
           }>
           <View style={styles.addToCart}>
             <Text style={styles.addToCartText}>Add to Cart</Text>

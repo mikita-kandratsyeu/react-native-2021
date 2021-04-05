@@ -1,34 +1,27 @@
 package com.appreactnative;
 
+import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteStatement;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
 import com.facebook.common.logging.FLog;
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.common.ReactConstants;
-
-import java.util.HashSet;
 
 public class StorageModule extends ReactContextBaseJavaModule {
 
-    public ReactDatabaseSupplier mReactDatabaseSupplier;
-    private boolean mShuttingDown = false;
+    DBHelper dbHelper;
 
     public StorageModule(ReactApplicationContext context) {
         super(context);
-        mReactDatabaseSupplier = ReactDatabaseSupplier.getInstance(context);
-    }
-
-    private boolean ensureDatabase() {
-        return !mShuttingDown && mReactDatabaseSupplier.ensureDatabase();
+        dbHelper = new DBHelper(context);
     }
 
     @NonNull
@@ -39,15 +32,13 @@ public class StorageModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void insertItem(final String key, final String value, final Callback callback) {
-        String sql = "INSERT OR REPLACE INTO " + ReactDatabaseSupplier.TABLE_CATALYST + " VALUES (?, ?);";
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-        SQLiteStatement statement = mReactDatabaseSupplier.get().compileStatement(sql);
+        ContentValues contentValues = new ContentValues();
 
         WritableMap error = null;
 
         try {
-            mReactDatabaseSupplier.get().beginTransaction();
-
             if (key == null) {
                 error = StorageErrorUtil.getInvalidKeyError(null);
                 return;
@@ -58,89 +49,78 @@ public class StorageModule extends ReactContextBaseJavaModule {
                 return;
             }
 
+            contentValues.put(DBHelper.KEY_COLUMN, key);
+            contentValues.put(DBHelper.VALUE_COLUMN, value);
 
-            statement.clearBindings();
-            statement.bindString(1, key);
-            statement.bindString(2, value);
-            statement.execute();
-
-            mReactDatabaseSupplier.get().setTransactionSuccessful();
+            database.insert(DBHelper.TABLE_NAME, null, contentValues);
         } catch (Exception e) {
             FLog.w(ReactConstants.TAG, e.getMessage(), e);
             error = StorageErrorUtil.getError(null, e.getMessage());
         } finally {
-            try {
-                mReactDatabaseSupplier.get().endTransaction();
-            } catch (Exception e) {
-                FLog.w(ReactConstants.TAG, e.getMessage(), e);
-
-                if (error == null) {
-                    error = StorageErrorUtil.getError(null, e.getMessage());
-                }
+            if (error != null) {
+                callback.invoke(error);
+            } else {
+                callback.invoke(null, null);
             }
         }
-
-        if (error != null) {
-            callback.invoke(error);
-        } else {
-            callback.invoke();
-        }
-
     }
 
     @ReactMethod
     public void getItem(final String key, final Callback callback) {
-        if (key == null) {
-            callback.invoke(StorageErrorUtil.getInvalidKeyError(null), null);
-            return;
-        }
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-        if (!ensureDatabase()) {
-            callback.invoke(StorageErrorUtil.getDBError(null), null);
-            return;
-        }
+        WritableMap error = null;
 
-        String[] columns = {ReactDatabaseSupplier.KEY_COLUMN, ReactDatabaseSupplier.VALUE_COLUMN};
+        WritableNativeMap values = new WritableNativeMap();
 
-        WritableArray data = Arguments.createArray();
+        try (Cursor cursor = database.query(DBHelper.TABLE_NAME, null, null,
+                null, null, null, null)) {
+            if (key == null) {
+                error = StorageErrorUtil.getInvalidKeyError(null);
+                return;
+            }
 
-        Cursor cursor = mReactDatabaseSupplier.get().query(
-                ReactDatabaseSupplier.TABLE_CATALYST,
-                columns,
-                StorageUtil.buildKeySelection(1),
-                null,
-                null,
-                null,
-                null
-        );
-
-        try {
             if (cursor.moveToFirst()) {
+                int keyColumnIndex = cursor.getColumnIndex(DBHelper.KEY_COLUMN);
+                int valueColumnIndex = cursor.getColumnIndex(DBHelper.VALUE_COLUMN);
+
                 do {
-                    WritableArray row = Arguments.createArray();
-                    row.pushString(cursor.getString(0));
-                    row.pushString(cursor.getString(1));
-                    data.pushArray(row);
+                    values.putString(cursor.getString(keyColumnIndex), cursor.getString(valueColumnIndex));
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
             FLog.w(ReactConstants.TAG, e.getMessage(), e);
-            callback.invoke(StorageErrorUtil.getError(null, e.getMessage()), null);
-            return;
+            error = StorageErrorUtil.getError(null, e.getMessage());
         } finally {
-            cursor.close();
+            if (error != null) {
+                callback.invoke(error);
+            } else {
+                if (values.hasKey(key)) {
+                    callback.invoke(null, values);
+                } else {
+                    callback.invoke(null, null);
+                }
+            }
         }
-
-        WritableArray row = Arguments.createArray();
-        row.pushString(key);
-        row.pushNull();
-        data.pushArray(row);
-
-        callback.invoke(null, data);
     }
 
     @ReactMethod
-    public void deleteItem(String key) {
+    public void deleteTable(final Callback callback) {
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+        WritableMap error = null;
+
+        try {
+            database.delete(DBHelper.TABLE_NAME, null, null);
+        } catch (Exception e) {
+            FLog.w(ReactConstants.TAG, e.getMessage(), e);
+            error = StorageErrorUtil.getError(null, e.getMessage());
+        } finally {
+            if (error != null) {
+                callback.invoke(error);
+            } else {
+                callback.invoke(null, null);
+            }
+        }
     }
 }

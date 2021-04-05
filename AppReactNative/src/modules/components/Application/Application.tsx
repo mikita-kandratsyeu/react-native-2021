@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeModules, Platform } from 'react-native';
 import {
   Login,
   Registration,
@@ -25,8 +26,11 @@ import {
   StackRouters,
   DrawerRouters,
   errorInternetConnection,
+  userToken,
 } from '../../../constans';
 import { setUserData } from '../../../actions';
+
+const { StorageModule } = NativeModules;
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -53,15 +57,29 @@ export const Application: React.FC = () => {
 
   const getUserToken = async () => {
     try {
-      return await AsyncStorage.getItem('userToken');
+      return await AsyncStorage.getItem(userToken);
     } catch (err) {
-      console.info(err);
+      console.error(err);
 
       return null;
     }
   };
 
-  getUserToken().then(userToken => setToken(userToken));
+  if (Platform.OS === 'ios') {
+    getUserToken().then(tokenItem => setToken(tokenItem));
+  } else {
+    StorageModule.getItem(userToken, (err: any, res: any) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (res) {
+        setToken(res[userToken]);
+      } else {
+        setToken('');
+      }
+    });
+  }
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -120,7 +138,17 @@ export const Application: React.FC = () => {
         description={errorInternetConnection}
         isVisible={isModalVisible}
         setIsVisible={setIsModalVisible}
-        onPress={() => dispatch(setUserData('', ''))}
+        onPress={() => {
+          if (Platform.OS === 'ios') {
+            dispatch(setUserData('', ''));
+          } else {
+            StorageModule.deleteTable((err: any) => {
+              if (err) {
+                console.error(err);
+              }
+            });
+          }
+        }}
         isBackButtonBlock
       />
     </>
