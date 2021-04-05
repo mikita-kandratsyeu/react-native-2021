@@ -17,7 +17,7 @@ import com.facebook.react.common.ReactConstants;
 public class ReactDatabaseSupplier extends SQLiteOpenHelper {
 
     // VisibleForTesting
-    public static final String DATABASE_NAME = "RKStorage";
+    public static final String DATABASE_NAME = "LocalStorage";
 
     private static final int DATABASE_VERSION = 1;
     private static final int SLEEP_TIME_MS = 30;

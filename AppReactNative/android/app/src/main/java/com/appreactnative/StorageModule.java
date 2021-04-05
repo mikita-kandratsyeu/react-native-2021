@@ -1,5 +1,6 @@
 package com.appreactnative;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -16,6 +17,8 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.ReactConstants;
 
 import java.util.HashSet;
+
+import static com.appreactnative.ReactDatabaseSupplier.KEY_COLUMN;
 
 public class StorageModule extends ReactContextBaseJavaModule {
 
@@ -39,9 +42,9 @@ public class StorageModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void insertItem(final String key, final String value, final Callback callback) {
-        String sql = "INSERT OR REPLACE INTO " + ReactDatabaseSupplier.TABLE_CATALYST + " VALUES (?, ?);";
-
-        SQLiteStatement statement = mReactDatabaseSupplier.get().compileStatement(sql);
+        ContentValues values = new ContentValues();
+        values.put(ReactDatabaseSupplier.KEY_COLUMN, key);
+        values.put(ReactDatabaseSupplier.VALUE_COLUMN, value);
 
         WritableMap error = null;
 
@@ -58,11 +61,11 @@ public class StorageModule extends ReactContextBaseJavaModule {
                 return;
             }
 
-
-            statement.clearBindings();
-            statement.bindString(1, key);
-            statement.bindString(2, value);
-            statement.execute();
+            mReactDatabaseSupplier.get().replace(
+                    ReactDatabaseSupplier.TABLE_CATALYST,
+                    null,
+                    values
+            );
 
             mReactDatabaseSupplier.get().setTransactionSuccessful();
         } catch (Exception e) {
@@ -100,28 +103,24 @@ public class StorageModule extends ReactContextBaseJavaModule {
             return;
         }
 
-        String[] columns = {ReactDatabaseSupplier.KEY_COLUMN, ReactDatabaseSupplier.VALUE_COLUMN};
-
         WritableArray data = Arguments.createArray();
 
         Cursor cursor = mReactDatabaseSupplier.get().query(
                 ReactDatabaseSupplier.TABLE_CATALYST,
-                columns,
-                StorageUtil.buildKeySelection(1),
+                new String[] { ReactDatabaseSupplier.VALUE_COLUMN },
+                KEY_COLUMN + " = ?",
+                new String[] { key },
                 null,
                 null,
                 null,
-                null
+                "1"
         );
 
         try {
             if (cursor.moveToFirst()) {
-                do {
-                    WritableArray row = Arguments.createArray();
-                    row.pushString(cursor.getString(0));
-                    row.pushString(cursor.getString(1));
-                    data.pushArray(row);
-                } while (cursor.moveToNext());
+                callback.invoke(null, cursor.getString(0));
+            } else {
+                callback.invoke(null, null);
             }
         } catch (Exception e) {
             FLog.w(ReactConstants.TAG, e.getMessage(), e);
@@ -130,17 +129,10 @@ public class StorageModule extends ReactContextBaseJavaModule {
         } finally {
             cursor.close();
         }
-
-        WritableArray row = Arguments.createArray();
-        row.pushString(key);
-        row.pushNull();
-        data.pushArray(row);
-
-        callback.invoke(null, data);
     }
 
     @ReactMethod
     public void deleteItem(String key) {
-
+        
     }
 }

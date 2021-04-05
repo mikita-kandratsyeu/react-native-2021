@@ -13,6 +13,19 @@ import styles from './DescriptionStyles';
 // TODO: Test SQLite
 const { ToastModule, StorageModule } = NativeModules;
 
+StorageModule.insertItem('qweqweqweqweqe', '113123123123', () => {
+  StorageModule.getItem('qweqweqweqweqe', (e: any, data: string) => {
+    console.info('======================================>', data)
+  })
+})
+
+StorageModule.insertItem('kkk', '{ ff: 1111}', () => {
+  StorageModule.getItem('kkk', (e: any, data: string) => {
+    console.info('======================================>', data)
+  })
+})
+
+
 export const Description: React.FC<IDescriptionProps> = ({ description }) => (
   <View style={styles.container}>
     <Text style={styles.header}>Description: </Text>
