@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { View, Text, Linking } from 'react-native';
+import { View, Text, Linking, Platform, NativeModules } from 'react-native';
 import Share from 'react-native-share';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
@@ -19,6 +19,8 @@ import {
   phoneStore,
 } from '../../../constans';
 import styles from './CustomDrawerStyles';
+
+const { StorageModule } = NativeModules;
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const navigator = useNavigation();
@@ -168,7 +170,19 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => dispatch(setUserData('', ''))}
+          onPress={() => {
+            if (Platform.OS === 'ios') {
+              dispatch(setUserData('', ''));
+            } else {
+              StorageModule.deleteTable((err: any) => {
+                if (err) {
+                  console.error(err);
+                }
+
+                dispatch(setUserData('', ''));
+              });
+            }
+          }}
         />
       </View>
     </DrawerContentScrollView>

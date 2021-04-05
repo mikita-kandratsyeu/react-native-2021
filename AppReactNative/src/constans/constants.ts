@@ -12,6 +12,7 @@ export const maxLengthTitleProductList: number = 15;
 export const maxLengthCategoryTitle: number = 9;
 
 export const dateFormat: string = 'DD/MM/YYYY HH:mm:ss';
+export const userToken: string = 'userToken';
 
 export enum StackRouters {
   login = 'Login',
