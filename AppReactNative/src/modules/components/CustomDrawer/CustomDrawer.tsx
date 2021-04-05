@@ -171,9 +171,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
             />
           )}
           onPress={() => {
-            if (Platform.OS === 'ios') {
-              dispatch(setUserData('', ''));
-            } else {
+            if (Platform.OS === 'android') {
               StorageModule.deleteTable((err: any) => {
                 if (err) {
                   console.error(err);
@@ -181,6 +179,8 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
 
                 dispatch(setUserData('', ''));
               });
+            } else {
+              dispatch(setUserData('', ''));
             }
           }}
         />

@@ -1,3 +1,5 @@
+import { IProduct } from '../../../../../interfaces';
+
 export interface IDescriptionProps {
-  description: string;
+  product: IProduct;
 }

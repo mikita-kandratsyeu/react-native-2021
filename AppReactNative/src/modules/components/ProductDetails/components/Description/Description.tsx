@@ -5,16 +5,17 @@ import {
   TouchableOpacity,
 } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
+import PushNotification from 'react-native-push-notification';
 import { IDescriptionProps } from './interfaces';
-import { defaultStyles } from '../../../../../constans';
+import { channelIdCart, defaultStyles } from '../../../../../constans';
 import styles from './DescriptionStyles';
 
 const { ToastModule } = NativeModules;
 
-export const Description: React.FC<IDescriptionProps> = ({ description }) => (
+export const Description: React.FC<IDescriptionProps> = ({ product }) => (
   <View style={styles.container}>
     <Text style={styles.header}>Description: </Text>
-    <Text style={styles.description}>{description}</Text>
+    <Text style={styles.description}>{product.description}</Text>
     <View style={styles.controlsContainer}>
       <View style={styles.wishListWrapper}>
         <TouchableHighlight
@@ -33,14 +34,21 @@ export const Description: React.FC<IDescriptionProps> = ({ description }) => (
       </View>
       <View style={styles.addToCartWrapper}>
         <TouchableOpacity
-          onPress={() =>
-            Platform.OS === 'android'
-              ? ToastModule.showText(
-                  'Product added to your cart',
-                  ToastModule.LENGTH_SHORT,
-                )
-              : null
-          }>
+          onPress={() => {
+            if (Platform.OS === 'android') {
+              ToastModule.showText(
+                'Product added to your cart',
+                ToastModule.LENGTH_SHORT,
+              );
+
+              PushNotification.localNotification({
+                channelId: channelIdCart,
+                title: product.name,
+                message: 'Your product was added to cart',
+                largeIconUrl: product.source.uri,
+              });
+            }
+          }}>
           <View style={styles.addToCart}>
             <Text style={styles.addToCartText}>Add to Cart</Text>
           </View>

@@ -62,9 +62,7 @@ export const Application: React.FC = () => {
     }
   };
 
-  if (Platform.OS === 'ios') {
-    getUserToken().then(tokenItem => setToken(tokenItem));
-  } else {
+  if (Platform.OS === 'android') {
     StorageModule.getItem(userToken, (err: any, res: any) => {
       if (err) {
         console.error(err);
@@ -76,6 +74,8 @@ export const Application: React.FC = () => {
         setToken('');
       }
     });
+  } else {
+    getUserToken().then(tokenItem => setToken(tokenItem));
   }
 
   useEffect(() => {

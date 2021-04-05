@@ -13,6 +13,7 @@ export const maxLengthCategoryTitle: number = 9;
 
 export const dateFormat: string = 'DD/MM/YYYY HH:mm:ss';
 export const userToken: string = 'userToken';
+export const channelIdCart: string = 'channel-id-cart';
 
 export enum StackRouters {
   login = 'Login',

@@ -43,11 +43,7 @@ export const ProductDetails: React.FC = () => {
         <>
           <Product product={currentProductData} isExtend />
           <Separator />
-          <Description
-            description={
-              currentProductData.description || 'Description is empty'
-            }
-          />
+          <Description product={currentProductData} />
         </>
       )}
     </ScrollView>

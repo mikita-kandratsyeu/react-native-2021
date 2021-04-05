@@ -11,7 +11,15 @@ export const setUserDataAction = createAction('SET_USER_DATA_ACTION');
 export const setUserData = (username: string, token: string) => (
   dispatch: Dispatch,
 ) => {
-  if (Platform.OS === 'ios') {
+  if (Platform.OS === 'android') {
+    StorageModule.insertItem(userToken, token, (err: any) => {
+      if (err) {
+        console.info(err);
+      }
+
+      dispatch(setUserDataAction({ username, token }));
+    });
+  } else {
     const storeUserData = async () => {
       try {
         return await AsyncStorage.setItem(userToken, token);
@@ -23,14 +31,6 @@ export const setUserData = (username: string, token: string) => (
     };
 
     storeUserData().then(() => {
-      dispatch(setUserDataAction({ username, token }));
-    });
-  } else {
-    StorageModule.insertItem(userToken, token, (err: any) => {
-      if (err) {
-        console.info(err);
-      }
-
       dispatch(setUserDataAction({ username, token }));
     });
   }
