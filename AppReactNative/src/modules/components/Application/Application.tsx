@@ -4,7 +4,7 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -28,7 +28,6 @@ import {
   errorInternetConnection,
   userToken,
 } from '../../../constans';
-import { setUserData } from '../../../actions';
 
 const { StorageModule } = NativeModules;
 
@@ -48,8 +47,6 @@ const drawerRoutes = () => (
 );
 
 export const Application: React.FC = () => {
-  const dispatch = useDispatch();
-
   const user = useSelector(getUserDataSelector);
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -138,17 +135,6 @@ export const Application: React.FC = () => {
         description={errorInternetConnection}
         isVisible={isModalVisible}
         setIsVisible={setIsModalVisible}
-        onPress={() => {
-          if (Platform.OS === 'ios') {
-            dispatch(setUserData('', ''));
-          } else {
-            StorageModule.deleteTable((err: any) => {
-              if (err) {
-                console.error(err);
-              }
-            });
-          }
-        }}
         isBackButtonBlock
       />
     </>

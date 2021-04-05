@@ -170,7 +170,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => () => {
+          onPress={() => {
             if (Platform.OS === 'ios') {
               dispatch(setUserData('', ''));
             } else {
@@ -178,6 +178,8 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
                 if (err) {
                   console.error(err);
                 }
+
+                dispatch(setUserData('', ''));
               });
             }
           }}
