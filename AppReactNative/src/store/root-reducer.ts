@@ -7,6 +7,7 @@ import {
   setProductsReducer,
   setCurrentProductReducer,
   setOrdersReducer,
+  setShoppingCartReducer,
 } from '../reducers';
 
 const createRootReducer = () =>
@@ -18,6 +19,7 @@ const createRootReducer = () =>
     products: setProductsReducer,
     currentProduct: setCurrentProductReducer,
     orders: setOrdersReducer,
+    shoppingCart: setShoppingCartReducer,
   });
 
 export default createRootReducer;

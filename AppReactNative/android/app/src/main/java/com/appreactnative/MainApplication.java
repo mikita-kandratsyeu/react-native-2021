@@ -11,11 +11,14 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.facebook.react.bridge.JSIModulePackage;
 import com.swmansion.reanimated.ReanimatedJSIModulePackage;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.oblador.keychain.KeychainPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -32,6 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
 
                     packages.add(new ToastPackage());
                     packages.add(new StoragePackage());
+//                     packages.add(new KeychainPackage());
+//                     packages.add(new ReactNativePushNotificationPackage());
 
                     return packages;
                 }

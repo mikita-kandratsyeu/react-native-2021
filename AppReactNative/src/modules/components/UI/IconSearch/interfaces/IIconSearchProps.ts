@@ -1,4 +1,4 @@
 export interface IIconSearchProps {
-  isVisible: boolean;
+  isVisible?: boolean;
   color?: string;
 }

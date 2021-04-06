@@ -4,11 +4,11 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import NetInfo from '@react-native-community/netinfo';
+import * as Keychain from 'react-native-keychain';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NativeModules, Platform } from 'react-native';
 import {
   Login,
   Registration,
@@ -28,8 +28,7 @@ import {
   errorInternetConnection,
   userToken,
 } from '../../../constans';
-
-const { StorageModule } = NativeModules;
+import { setUserData } from '../../../actions';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -47,38 +46,37 @@ const drawerRoutes = () => (
 );
 
 export const Application: React.FC = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector(getUserDataSelector);
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [token, setToken] = useState<string | null>(null);
+  const [isAccess, setIsAccess] = useState<boolean>(false);
 
-  const getUserToken = async () => {
+  const checkAccessStatus = async () => {
     try {
-      return await AsyncStorage.getItem(userToken);
+      const credentials = await Keychain.getGenericPassword();
+      const token = await AsyncStorage.getItem(userToken);
+
+      if (credentials) {
+        dispatch(
+          setUserData(credentials.username, credentials.password, token || ''),
+        );
+
+        setIsAccess(true);
+      } else {
+        setIsAccess(false);
+      }
     } catch (err) {
       console.error(err);
 
-      return null;
+      setIsAccess(false);
     }
   };
 
-  if (Platform.OS === 'ios') {
-    getUserToken().then(tokenItem => setToken(tokenItem));
-  } else {
-    StorageModule.getItem(userToken, (err: any, res: any) => {
-      if (err) {
-        console.error(err);
-      }
-
-      if (res) {
-        setToken(res[userToken]);
-      } else {
-        setToken('');
-      }
-    });
-  }
-
   useEffect(() => {
+    checkAccessStatus();
+
     const unsubscribe = NetInfo.addEventListener(state => {
       if (!state.isConnected) {
         setIsModalVisible(true);
@@ -92,6 +90,14 @@ export const Application: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!user.token) {
+      setIsAccess(false);
+    } else {
+      setIsAccess(true);
+    }
+  }, [user.token]);
+
   return (
     <>
       <NavigationContainer>
@@ -102,7 +108,7 @@ export const Application: React.FC = () => {
             gestureDirection: 'horizontal',
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           }}>
-          {token || user.token ? (
+          {isAccess ? (
             <>
               <Stack.Screen name={StackRouters.main} component={drawerRoutes} />
               <Stack.Screen

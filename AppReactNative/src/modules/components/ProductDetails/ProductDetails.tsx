@@ -34,7 +34,7 @@ export const ProductDetails: React.FC = () => {
 
   return (
     <ScrollView style={{ backgroundColor: defaultStyles.colors.white }}>
-      <Header />
+      <Header isShoppingCartVisible isSearchIconVisible />
       {isLoading ? (
         <View style={spinner}>
           <LoadingIndicator color={defaultStyles.colors.blue} />
@@ -43,11 +43,7 @@ export const ProductDetails: React.FC = () => {
         <>
           <Product product={currentProductData} isExtend />
           <Separator />
-          <Description
-            description={
-              currentProductData.description || 'Description is empty'
-            }
-          />
+          <Description product={currentProductData} />
         </>
       )}
     </ScrollView>

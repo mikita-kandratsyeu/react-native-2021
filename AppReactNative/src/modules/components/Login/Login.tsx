@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
 
     loginIntoSystem(login, password).then(res => {
       if (res) {
-        dispatch(setUserData(login, res.token));
+        dispatch(setUserData(login, password, res.token));
         dispatch(setProducts(productsMock));
 
         setIsModalVisible(true);

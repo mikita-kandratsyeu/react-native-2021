@@ -52,7 +52,7 @@ public class StorageModule extends ReactContextBaseJavaModule {
             contentValues.put(DBHelper.KEY_COLUMN, key);
             contentValues.put(DBHelper.VALUE_COLUMN, value);
 
-            database.insert(DBHelper.TABLE_NAME, null, contentValues);
+            database.replace(DBHelper.TABLE_NAME, null, contentValues);
         } catch (Exception e) {
             FLog.w(ReactConstants.TAG, e.getMessage(), e);
             error = StorageErrorUtil.getError(null, e.getMessage());

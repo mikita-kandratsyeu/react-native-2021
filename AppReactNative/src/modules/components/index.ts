@@ -13,3 +13,4 @@ export * from './ModalWindow';
 export * from './Map';
 export * from './OrdersList';
 export * from './OrderDetails';
+export * from './ShoppingCart';
