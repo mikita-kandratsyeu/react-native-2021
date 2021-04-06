@@ -6,7 +6,8 @@ import {
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { View, Text, Linking, Platform, NativeModules } from 'react-native';
+import * as Keychain from 'react-native-keychain';
+import { View, Text, Linking } from 'react-native';
 import Share from 'react-native-share';
 import { useNavigation } from '@react-navigation/native';
 import { setUserData } from '../../../actions';
@@ -19,8 +20,6 @@ import {
   phoneStore,
 } from '../../../constans';
 import styles from './CustomDrawerStyles';
-
-const { StorageModule } = NativeModules;
 
 export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
   const navigator = useNavigation();
@@ -38,6 +37,16 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
       console.error(err);
 
       return null;
+    }
+  };
+
+  const logoutHandler = async () => {
+    try {
+      await Keychain.resetGenericPassword();
+
+      dispatch(setUserData('', '', ''));
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -170,19 +179,7 @@ export const CustomDrawer: React.FC<DrawerContentComponentProps> = props => {
               color={defaultStyles.colors.blue}
             />
           )}
-          onPress={() => {
-            if (Platform.OS === 'android') {
-              StorageModule.deleteTable((err: any) => {
-                if (err) {
-                  console.error(err);
-                }
-
-                dispatch(setUserData('', ''));
-              });
-            } else {
-              dispatch(setUserData('', ''));
-            }
-          }}
+          onPress={logoutHandler}
         />
       </View>
     </DrawerContentScrollView>
