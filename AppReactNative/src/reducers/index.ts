@@ -5,3 +5,4 @@ export * from './set-categories.reducer';
 export * from './set-products.reducer';
 export * from './set-current-product.reducer';
 export * from './set-orders.reducer';
+export * from './set-shopping-cart.reducer';

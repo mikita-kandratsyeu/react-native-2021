@@ -64,7 +64,7 @@ export const Main: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header isSearchVisible isToggleButtonVisible />
+      <Header isSearchVisible isToggleButtonVisible isShoppingCartVisible />
       {isLoading ? (
         <View style={spinner}>
           <LoadingIndicator color={defaultStyles.colors.blue} />

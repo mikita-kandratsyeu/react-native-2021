@@ -6,3 +6,4 @@ export * from './set-categories.action';
 export * from './set-products.action';
 export * from './set-current-product.action';
 export * from './set-orders.action';
+export * from './set-shopping-cart.action';

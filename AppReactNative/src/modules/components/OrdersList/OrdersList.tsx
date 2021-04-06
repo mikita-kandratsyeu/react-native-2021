@@ -62,7 +62,7 @@ export const OrdersList: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header isShoppingCartVisible />
       {isLoading ? (
         <View style={spinner}>
           <LoadingIndicator color={defaultStyles.colors.blue} />

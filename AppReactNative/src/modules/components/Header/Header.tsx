@@ -11,6 +11,8 @@ import styles from './HeaderStyles';
 export const Header: React.FC<IHeaderProps> = ({
   isToggleButtonVisible,
   isSearchVisible,
+  isSearchIconVisible,
+  isShoppingCartVisible,
 }) => {
   const navigator = useNavigation();
 
@@ -49,20 +51,22 @@ export const Header: React.FC<IHeaderProps> = ({
             underlayColor={defaultStyles.colors.pressLink}
             onPress={() => navigator.navigate(StackRouters.mockComponent)}>
             <IconSearch
-              isVisible={!isSearchVisible}
+              isVisible={isSearchIconVisible}
               color={defaultStyles.colors.white}
             />
           </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.iconButton}
-            underlayColor={defaultStyles.colors.pressLink}
-            onPress={() => navigator.navigate(StackRouters.mockComponent)}>
-            <Icon
-              name="shoppingcart"
-              size={defaultStyles.fontSize.large}
-              color={defaultStyles.colors.white}
-            />
-          </TouchableHighlight>
+          {isShoppingCartVisible && (
+            <TouchableHighlight
+              style={styles.iconButton}
+              underlayColor={defaultStyles.colors.pressLink}
+              onPress={() => navigator.navigate(StackRouters.mockComponent)}>
+              <Icon
+                name="shoppingcart"
+                size={defaultStyles.fontSize.large}
+                color={defaultStyles.colors.white}
+              />
+            </TouchableHighlight>
+          )}
         </View>
       </View>
       <Search

@@ -89,6 +89,12 @@ export interface IOrder {
   products: IProduct[];
 }
 
+export interface IShoppingCart {
+  productId: string;
+  amount: number;
+  product: IProduct;
+}
+
 export interface IProductsState {
   products: IProduct[];
 }
@@ -99,4 +105,8 @@ export interface ICurrentProductState {
 
 export interface IOrdersState {
   orders: IOrder[];
+}
+
+export interface IShoppingCartState {
+  shoppingCart: IShoppingCart[];
 }

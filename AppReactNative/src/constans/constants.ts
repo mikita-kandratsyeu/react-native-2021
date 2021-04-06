@@ -1,4 +1,4 @@
-export const apiHost: string = 'http://35.231.209.61/';
+export const apiHost: string = 'http://34.74.231.7/';
 
 export const nameOfStore: string = 'Ecommerce Store';
 export const emailAddress: string = 'support@ecommerce.com';
